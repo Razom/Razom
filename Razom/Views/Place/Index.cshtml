@@ -1,0 +1,50 @@
+﻿@model Razom.Models.PlaceCollection
+@{
+    ViewBag.Title = "Мої місця";
+}
+
+<div class="wrapperManage">
+    <div class="containerManage">
+        <ul class="menuManage" rel="sam1">
+            <li>@Html.ActionLink("Створити місце", "Create", "Place")</li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    @if (Model.Places.Count() == 0)
+    {
+        <h3>У вас немає місць, які ви відмітили як ті, що хочете відвідати</h3>
+    }
+    @foreach (var item in Model.Places)
+    {
+        <div>
+            <div><img class="listlogo" src="@Url.Content(item.PhotoUrl)" alt="IMAGES" /></div>
+            <div>
+                <p>@Html.ActionLink(item.Name, "Show", "Place", new { id=item.PlaceID },null)</p>
+                <p>
+                    @foreach (var a in item.tags)
+                    {
+                        <span>@a </span>
+                    }
+                </p>
+            </div>
+            <div>
+                @Html.ActionLink("Видалити", "DeleteFromList", "Place", new { id=item.ID }, null)
+            </div>
+        </div>
+    }
+</div>
+<div id="pager">
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <span style="background-color:black; color: #f2f2f2"><a href="@String.Format("/Place/Index/" + i)"> @Model.CurrentPage </a></span>
+        }
+        else
+        {
+            <span style="color: black"><a href="@String.Format("/Place/Index/" + i)"> @i </a></span>
+        }
+    }
+</div>

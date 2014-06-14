@@ -1,0 +1,34 @@
+﻿@model Razom.Models.PlaceAddForm
+
+@{
+    ViewBag.Title = "Додати місце";
+}
+
+<h2>Додати місце</h2>
+
+@using (Html.BeginForm("AddPlace","Trip",FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.TripID)
+    @Html.TextBoxFor(m => m.Token)
+    <input type="submit" value="Шукати" />
+}
+@foreach (var item in Model.PlacesInfo.Places)
+{
+    <p>@Html.ActionLink(String.Format("{0}", item.Name), "Show", "Place", new { id=@item.ID }, null) - @Html.ActionLink("Додати", "ConfirmAddPlace", "Trip", new { id=@Model.TripID,  uid=@item.ID },null) </p>
+}
+<div>
+@for (int i = 1; i <= Model.PlacesInfo.PagesCount; i++)
+{
+    if (i == Model.PlacesInfo.CurrentPage)
+    {
+        <span style="background-color:black; color: #f2f2f2">@i</span>
+    }
+    else
+    {
+        using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post))
+        {    
+             <span style="background-color:black; color: #f2f2f2"><input type="submit" name="page" value="@i" /><input type="text" name="id" value="@Model.Token" style="display:none;" /><input type="text" name="t_id" value="@Model.TripID" style="display:none;"></span>
+        }
+    }
+}   
+</div>

@@ -1,0 +1,48 @@
+﻿@model Razom.Models.FirstRegisterModel
+
+@{
+    ViewBag.Title = "Реєстрація";
+}
+
+@using (Html.BeginForm("RegisterOne","Account")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    
+    <form role="form">
+        <div style="position:relative; left:40%">
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, "Логін", null)
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, "Пароль", null)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, "Підтвердіть пароль", null)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, "Ваше ім'я", null)
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SecondName, "Ваше прізвище", null)
+                @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.SecondName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EMail, "E-Mail", null)
+                @Html.TextBoxFor(m => m.EMail, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.EMail)
+            </div>
+
+            <input class="btn btn-success" type="submit" value="Зберегти та продовжити" />
+        </div>  
+    </form>
+}

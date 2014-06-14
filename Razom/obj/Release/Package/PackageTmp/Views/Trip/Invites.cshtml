@@ -1,0 +1,55 @@
+﻿@model Razom.Models.TripCollection
+
+@{
+    ViewBag.Title = "Запрошення";
+}
+
+
+@if (Model.Trips.Count() == 0)
+{
+    <h3>У вас немає подорожей</h3>
+}
+else
+{
+    <div style="position:relative;left:20%;margin-top:5%; ">
+    @for (int i = 0; i < Model.Trips.Count; )
+    {
+        <div class="row">
+            @for (int j = 0; j < 2 && i + j <= Model.Trips.Count; j++)
+            {
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p>Статус: @Model.Trips[i].Date</p>
+                            <p>@Html.ActionLink(Model.Trips[i].Name, "Show", "Trip", new { id = Model.Trips[i].ID }, new { @class="btn btn-primary"})</p>
+                            <p>@Html.ActionLink("Приєднатися до подорожі", "ConfirmTrip", "Trip", new { id= Model.Trips[i].ID }, new { @class="btn btn-primary"})</p>
+                        </div>
+                    </div>
+                </div>
+                { i++; }
+            }
+        </div>
+    }
+</div>     
+}
+
+<ul class="pagination" style="left:20%; position:relative;">
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <li class="active">
+                <a href="@String.Format("/Trip/Invite/" + i)"> @Model.CurrentPage </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@String.Format("/Trip/Invite/" + i)"> @i </a>
+            </li>
+        }
+    }
+</ul>
+
+

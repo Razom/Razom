@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Нового користувача додано";
+}
+
+<h4>Користувач @ViewBag.Name отримає запрошення!</h4>
+@Html.ActionLink("Назад до подорожі", "Show", "Trip", new { id=@ViewBag.id },null)

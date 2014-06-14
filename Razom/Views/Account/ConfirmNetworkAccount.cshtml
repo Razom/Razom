@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "ConfirmNetworkAccount";
+}
+
+<h3>Ваш акаунт у @ViewBag.Network активовано. Тепер дані звідти будуть використані тут!</h3>
+@Html.ActionLink("На головну","Index","Home")
+@Html.ActionLink("До профілю", "MyAccount", "Account", new { id=ViewBag.UserID },null)

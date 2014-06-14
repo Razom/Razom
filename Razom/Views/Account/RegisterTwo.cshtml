@@ -1,0 +1,45 @@
+﻿@model Razom.Models.SecondRegisterModel
+
+@{
+    ViewBag.Title = "Реєстрація";
+}
+
+@using (Html.BeginForm("RegisterTwo", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.ID)
+
+    
+        <form role="form">
+        <div style="position:relative; left:40%">
+            <div class="form-group">
+                @Html.LabelFor(m => m.FourSquareAccount, "Акаунт Fousquare", null)
+                @Html.TextBoxFor(m => m.FourSquareAccount, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.FourSquareAccount)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.TwitterAccount, "Акаунт Twitter", null)
+                @Html.TextBoxFor(m => m.TwitterAccount, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.TwitterAccount)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.VkAccount, "Акаунт Вконтакте", null)
+                @Html.TextBoxFor(m => m.VkAccount, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.VkAccount)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone, "Телефон", null)
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @style = "width:20%" })
+                @Html.ValidationMessageFor(m => m.Phone)
+            </div>
+            <div class="form-group">
+                <input type="file"  id="ImagePath" name="file" title="Виберіть аватар" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Зберегти та продовжити" />
+            </div>
+            
+        </div>  
+    </form>  
+}

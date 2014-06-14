@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Razom.Models.ShortPlace>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Message</h2>
+
+@Html.ActionLink("Запустити парсинг","Parse","Admin")
+
+<div style="width:500px;height:100px;overflow:auto;">
+    @Html.Grid(Model).Columns(columns =>
+        {
+        columns.Add(f => f.Name).Titled("Ім'я").SetWidth(20);
+        columns.Add(f => f.City).Titled("Повідомлення").Css("msg-width").SetWidth(100);
+        }    ).
+</div>

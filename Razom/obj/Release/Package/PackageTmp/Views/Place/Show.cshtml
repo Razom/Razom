@@ -1,0 +1,118 @@
+﻿@model Razom.Models.FullPlace
+
+@{
+    ViewBag.Title = "Місце";
+}
+
+<h2>@Model.Name</h2>
+@*@if (@Model.IsEditable)
+{
+    <p>@Html.ActionLink("Редагувати", "Edit", "Place",null, new {@class="btn btn-warning", @style="margin-left:1%" })</p>
+}*@
+<div class="mainPhoto">
+    @if (Model.PhotoUrls.Count() > 0)
+    {
+        <img src="@Model.PhotoUrls.First()" style="margin-left:1%; margin-top:1%" alt="photo" />
+    }
+    else
+    {
+        <img style ="margin-left:1%; margin-top:1%" src="@Url.Action("DisplayPicture", "Place", new {id =Model.PhotoBytes.First()})" alt="photo" />
+    }
+</div>
+<div class="placeInfo panel panel-primary" style="position:absolute;left:45%; top:28%">
+    <div class="panel-heading" style="background-color: #555; border-color: #555; ">
+        <h3 class="panel-title">Інформація про місце</h3>
+    </div>
+    <ul class="list-group">
+        @if (!string.IsNullOrEmpty(Model.City))
+        {
+            <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.City, "Місто: ")
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(m => m.City)
+                </div>
+            </div>
+            </li>       
+            
+        }
+
+        @if (!string.IsNullOrEmpty(Model.PlaceType))
+        {
+           <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.PlaceType, "Тип місця: ")
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(m => m.PlaceType)
+                </div>
+            </div>
+            </li>              
+        }
+
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Rating, "Рейтинг")
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(m => m.Rating)
+                </div>
+            </div>
+        </li>        
+
+        
+        
+
+    </ul>
+</div>
+
+
+
+<div class="panel panel-default" style="position:relative;margin-left: 1%; margin-top: 2%; width:70%">
+    <div class="panel-heading">
+        <h3 class="panel-title">Коментарі</h3>
+    </div>
+    <div class="panel-body">
+        <div>
+            @*@using(Ajax.BeginForm(new AjaxOptions() { UpdateTargetId = "tableData" }))
+                {
+                    <table>
+                        <tbody id="tableData">
+                            Html.Action("ShowComments", new {id = Model.PlaceID});
+                        </tbody>
+                    </table>
+                    Html.TextArea("id");
+                    <input type="submit" value="Залишити коментар">
+                }*@
+            @if (Model.Comment.Count() == 0)
+            {
+                <p>Немає коментарів</p>
+            }
+            else
+            {
+                <table>
+                    <tbody>
+                        @foreach (var item in Model.Comment)
+                        {
+                            <tr>
+                                <td>@item.Message</td>
+                                <td>@item.Time</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            @Html.TextArea("newcomment", new { @class = "form-control", @rows = "4", @style = "width:40%;margin-left:1%;" })
+            <br />
+            <input type="button" style="margin-left: 1%;" class="btn btn-success" value="Залишити коментар" />
+        </div>
+    </div>
+</div>
+@if (Model.IsAuthorized && !Model.IsInFavorite)
+	{
+	    @Html.ActionLink("Додати місце до обраного", "AddToFavorite", "Place", new { id = Model.PlaceID }, null)	 
+	}

@@ -1,0 +1,11 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Помилка";
+}
+
+<hgroup class="title">
+    <h1 class="error">Помилка!</h1>
+    <h2 class="error">Помилка при обробці запиту</h2>
+    <h2 class="error">@Model.Exception.Message</h2>
+</hgroup>

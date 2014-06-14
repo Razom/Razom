@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Місце додано";
+}
+
+<h4>До подорожі додано місце "@ViewBag.Name"</h4>
+@Html.ActionLink("Назад до подорожі", "Show", "Trip", new { id=@ViewBag.id },null)

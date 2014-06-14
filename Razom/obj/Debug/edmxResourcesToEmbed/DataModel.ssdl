@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RazomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="RazomModelStoreContainer">
+    <EntitySet Name="Comments" EntityType="RazomModel.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DataType" EntityType="RazomModel.Store.DataType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FuturePlace" EntityType="RazomModel.Store.FuturePlace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="History" EntityType="RazomModel.Store.History" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Issues" EntityType="RazomModel.Store.Issues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Message" EntityType="RazomModel.Store.Message" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Network" EntityType="RazomModel.Store.Network" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NetworkAccounts" EntityType="RazomModel.Store.NetworkAccounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhotosPlace" EntityType="RazomModel.Store.PhotosPlace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Places" EntityType="RazomModel.Store.Places" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlaceType" EntityType="RazomModel.Store.PlaceType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Region" EntityType="RazomModel.Store.Region" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tag" EntityType="RazomModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TagToPlace" EntityType="RazomModel.Store.TagToPlace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Test" EntityType="RazomModel.Store.Test" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestData" EntityType="RazomModel.Store.TestData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestType" EntityType="RazomModel.Store.TestType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TravelPlaces" EntityType="RazomModel.Store.TravelPlaces" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Travels" EntityType="RazomModel.Store.Travels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="RazomModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersData" EntityType="RazomModel.Store.UsersData" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Comments_Places" Association="RazomModel.Store.FK_Comments_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FotosPlace_Places" Association="RazomModel.Store.FK_FotosPlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="PhotosPlace" EntitySet="PhotosPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuturePlace_Places" Association="RazomModel.Store.FK_FuturePlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="FuturePlace" EntitySet="FuturePlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuturePlace_Users" Association="RazomModel.Store.FK_FuturePlace_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FuturePlace" EntitySet="FuturePlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Travels" Association="RazomModel.Store.FK_History_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Users" Association="RazomModel.Store.FK_History_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issues_Users" Association="RazomModel.Store.FK_Issues_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Issues" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Travels" Association="RazomModel.Store.FK_Message_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Users" Association="RazomModel.Store.FK_Message_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetworkAccounts_Network" Association="RazomModel.Store.FK_NetworkAccounts_Network">
+      <End Role="Network" EntitySet="Network" />
+      <End Role="NetworkAccounts" EntitySet="NetworkAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetworkAccounts_Users" Association="RazomModel.Store.FK_NetworkAccounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NetworkAccounts" EntitySet="NetworkAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_City" Association="RazomModel.Store.FK_Places_City">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_PlaceType" Association="RazomModel.Store.FK_Places_PlaceType">
+      <End Role="PlaceType" EntitySet="PlaceType" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagToPlace_Places" Association="RazomModel.Store.FK_TagToPlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="TagToPlace" EntitySet="TagToPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagToPlace_Tag" Association="RazomModel.Store.FK_TagToPlace_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="TagToPlace" EntitySet="TagToPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_TestType" Association="RazomModel.Store.FK_Test_TestType">
+      <End Role="TestType" EntitySet="TestType" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestData_Test" Association="RazomModel.Store.FK_TestData_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="TestData" EntitySet="TestData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestData_Users" Association="RazomModel.Store.FK_TestData_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TestData" EntitySet="TestData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TravelPlaces_Places" Association="RazomModel.Store.FK_TravelPlaces_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="TravelPlaces" EntitySet="TravelPlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TravelPlaces_Travels" Association="RazomModel.Store.FK_TravelPlaces_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="TravelPlaces" EntitySet="TravelPlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_DataType" Association="RazomModel.Store.FK_UsersData_DataType">
+      <End Role="DataType" EntitySet="DataType" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_Network" Association="RazomModel.Store.FK_UsersData_Network">
+      <End Role="Network" EntitySet="Network" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_Users" Association="RazomModel.Store.FK_UsersData_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="nvarchar" MaxLength="200" />
+    <Property Name="Time" Type="datetime" />
+    <Property Name="PlaceID" Type="int" />
+  </EntityType>
+  <EntityType Name="DataType">
+    <Key>
+      <PropertyRef Name="DataTypeID" />
+    </Key>
+    <Property Name="DataTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Vale" Type="int" />
+  </EntityType>
+  <EntityType Name="FuturePlace">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="PlaceID" Type="int" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TravelID" Type="int" />
+    <Property Name="Rating" Type="int" />
+  </EntityType>
+  <EntityType Name="Issues">
+    <Key>
+      <PropertyRef Name="IssueID" />
+    </Key>
+    <Property Name="IssueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Massage" Type="nvarchar" MaxLength="200" />
+    <Property Name="Time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TravelID" Type="int" />
+    <Property Name="Text" Type="text" />
+    <Property Name="Time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Network">
+    <Key>
+      <PropertyRef Name="NetworkID" />
+    </Key>
+    <Property Name="NetworkID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="NetworkAccounts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NetworkID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ProfileURL" Type="nvarchar" MaxLength="200" />
+    <Property Name="AccessToken" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PhotosPlace">
+    <Key>
+      <PropertyRef Name="FotoID" />
+    </Key>
+    <Property Name="FotoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="int" />
+    <Property Name="FileFoto" Type="image" />
+    <Property Name="href" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Places">
+    <Key>
+      <PropertyRef Name="PlaceID" />
+    </Key>
+    <Property Name="PlaceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceTypeID" Type="int" />
+    <Property Name="CityID" Type="int" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PlaceType">
+    <Key>
+      <PropertyRef Name="PlaceTypeID" />
+    </Key>
+    <Property Name="PlaceTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NameTag" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TagToPlace">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="int" />
+    <Property Name="TagID" Type="int" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="nvarchar" MaxLength="200" />
+    <Property Name="TestTypeID" Type="int" />
+    <Property Name="Value" Type="int" />
+  </EntityType>
+  <EntityType Name="TestData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Data" Type="text" />
+    <Property Name="QuestionID" Type="int" />
+  </EntityType>
+  <EntityType Name="TestType">
+    <Key>
+      <PropertyRef Name="TestTypeID" />
+    </Key>
+    <Property Name="TestTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TravelPlaces">
+    <Key>
+      <PropertyRef Name="TravelPlaceID" />
+    </Key>
+    <Property Name="TravelPlaceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="int" />
+    <Property Name="TravelID" Type="int" />
+  </EntityType>
+  <EntityType Name="Travels">
+    <Key>
+      <PropertyRef Name="TravelID" />
+    </Key>
+    <Property Name="TravelID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DateStart" Type="date" />
+    <Property Name="DateFinish" Type="date" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Avatar" Type="image" />
+  </EntityType>
+  <EntityType Name="UsersData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="NetworkID" Type="int" />
+    <Property Name="DataTypeID" Type="int" />
+    <Property Name="Data" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Comments_Places">
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="0..1" />
+    <End Role="Comments" Type="RazomModel.Store.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FotosPlace_Places">
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="0..1" />
+    <End Role="PhotosPlace" Type="RazomModel.Store.PhotosPlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="PhotosPlace">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuturePlace_Places">
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="0..1" />
+    <End Role="FuturePlace" Type="RazomModel.Store.FuturePlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="FuturePlace">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuturePlace_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="FuturePlace" Type="RazomModel.Store.FuturePlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="FuturePlace">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Travels">
+    <End Role="Travels" Type="RazomModel.Store.Travels" Multiplicity="0..1" />
+    <End Role="History" Type="RazomModel.Store.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="History" Type="RazomModel.Store.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issues_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Issues" Type="RazomModel.Store.Issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Issues">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Travels">
+    <End Role="Travels" Type="RazomModel.Store.Travels" Multiplicity="0..1" />
+    <End Role="Message" Type="RazomModel.Store.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Message" Type="RazomModel.Store.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetworkAccounts_Network">
+    <End Role="Network" Type="RazomModel.Store.Network" Multiplicity="0..1" />
+    <End Role="NetworkAccounts" Type="RazomModel.Store.NetworkAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Network">
+        <PropertyRef Name="NetworkID" />
+      </Principal>
+      <Dependent Role="NetworkAccounts">
+        <PropertyRef Name="NetworkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetworkAccounts_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="NetworkAccounts" Type="RazomModel.Store.NetworkAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NetworkAccounts">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_City">
+    <End Role="Region" Type="RazomModel.Store.Region" Multiplicity="0..1" />
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_PlaceType">
+    <End Role="PlaceType" Type="RazomModel.Store.PlaceType" Multiplicity="0..1" />
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceType">
+        <PropertyRef Name="PlaceTypeID" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="PlaceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagToPlace_Places">
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="1" />
+    <End Role="TagToPlace" Type="RazomModel.Store.TagToPlace" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="TagToPlace">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagToPlace_Tag">
+    <End Role="Tag" Type="RazomModel.Store.Tag" Multiplicity="1" />
+    <End Role="TagToPlace" Type="RazomModel.Store.TagToPlace" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="TagID" />
+      </Principal>
+      <Dependent Role="TagToPlace">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_TestType">
+    <End Role="TestType" Type="RazomModel.Store.TestType" Multiplicity="0..1" />
+    <End Role="Test" Type="RazomModel.Store.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestType">
+        <PropertyRef Name="TestTypeID" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="TestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestData_Test">
+    <End Role="Test" Type="RazomModel.Store.Test" Multiplicity="0..1" />
+    <End Role="TestData" Type="RazomModel.Store.TestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="TestData">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestData_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="TestData" Type="RazomModel.Store.TestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TestData">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TravelPlaces_Places">
+    <End Role="Places" Type="RazomModel.Store.Places" Multiplicity="0..1" />
+    <End Role="TravelPlaces" Type="RazomModel.Store.TravelPlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="TravelPlaces">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TravelPlaces_Travels">
+    <End Role="Travels" Type="RazomModel.Store.Travels" Multiplicity="0..1" />
+    <End Role="TravelPlaces" Type="RazomModel.Store.TravelPlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="TravelPlaces">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_DataType">
+    <End Role="DataType" Type="RazomModel.Store.DataType" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.Store.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataType">
+        <PropertyRef Name="DataTypeID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="DataTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_Network">
+    <End Role="Network" Type="RazomModel.Store.Network" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.Store.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Network">
+        <PropertyRef Name="NetworkID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="NetworkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_Users">
+    <End Role="Users" Type="RazomModel.Store.Users" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.Store.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

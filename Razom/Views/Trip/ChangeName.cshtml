@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Зміна назви";
+}
+<div style="left:5%; position:relative;">
+    <h2>Зміна назви</h2>
+    <h3>Поточна назва: @ViewBag.Name</h3>
+    @using (Html.BeginForm("ChangeName", "Trip", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            
+            <label for="new_name">Нова назва</label>
+            <input class="form-control" type="text" name="new_name" style="width:25%" />
+            <input type="text" value="@ViewBag.ID" style="display:none" name="id" />
+            <input class="btn btn-success" type="submit" value="Змінити назву" style="margin-top:2%" />
+        </div>
+    }
+</div>

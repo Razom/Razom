@@ -1,0 +1,103 @@
+﻿@model Razom.Models.AccountModel
+
+@{
+    ViewBag.Title = "Мій профіль";
+}
+
+
+<div class="accountPhoto">
+    <img class="img-circle" style="margin-left:5%; margin-top:5%" src="@Url.Action("DisplayAvatar", "Account", new {id =Model.ID})" alt="photo" />
+</div>
+<div class="accountInfo panel panel-primary" style="position:absolute;left:40%; top:13%">
+    <div class="panel-heading" style="background-color: #555; border-color: #555; ">
+        <h3 class="panel-title">Профіль</h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                @Html.HiddenFor(m => m.ID)
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Login, "Логін")
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(m => m.Login)
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Ім'я</label>
+                </div>
+                <div class="col-md-4">
+                    @String.Format("{0} {1}", Model.FirstName, Model.SecondName)
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.EMail, "E-mail")
+                 </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(m => m.EMail)
+                </div>
+             </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Phone, "Телефон")
+                </div>
+                 <div class="col-md-4">
+                        @Html.DisplayFor(m => m.Phone)
+                 </div>
+             </div>
+         </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.FoursquareAccount, "Акаунт Fousquare")
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(m => m.FoursquareAccount)
+                </div>
+                <div class="col-md-4">
+                    @Html.ActionLink("Активувати акаунт", "ActicateAccount", "Account", new { id = "fs" }, new { @class = "btn btn-primary", @style = "background-color:#555" })
+                </div>
+            </div>
+          </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.TwitterAccount, "Акаунт Twitter")
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(m => m.TwitterAccount)
+                </div>
+                    <div class="col-md-4">
+                        @Html.ActionLink("Активувати акаунт", "ActicateAccount", "Account", new { id = "tw" }, new { @class = "btn btn-primary", @style = "background-color:#555; disabled;" })
+                    </div>
+            </div>
+</li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.VKAccount, "Акаунт Вконтакте")
+                 </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(m => m.VKAccount)
+                </div>
+                <div class="col-md-4">
+                    @Html.ActionLink("Активувати акаунт", "ActicateAccount", "Account", new { id = "vk" }, new { @class = "btn btn-primary", @style = "background-color:#555; disabled;" })
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <label>Ви можете: </label>
+            @Html.ActionLink("Вийти", "LogOff", "Account", new { @class = "btn btn-primary" })
+            @Html.ActionLink("Видалити акаунт", "DeleteAccount", "Account", new { @class = "btn btn-danger" })
+        </li>
+</ul>
+</div>
+<div class="clear"></div>

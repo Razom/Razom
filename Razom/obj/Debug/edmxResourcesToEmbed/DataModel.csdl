@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RazomModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RazomContext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="RazomModel.Comments" />
+    <EntitySet Name="DataType" EntityType="RazomModel.DataType" />
+    <EntitySet Name="FuturePlace" EntityType="RazomModel.FuturePlace" />
+    <EntitySet Name="History" EntityType="RazomModel.History" />
+    <EntitySet Name="Issues" EntityType="RazomModel.Issues" />
+    <EntitySet Name="Message" EntityType="RazomModel.Message" />
+    <EntitySet Name="Network" EntityType="RazomModel.Network" />
+    <EntitySet Name="NetworkAccounts" EntityType="RazomModel.NetworkAccounts" />
+    <EntitySet Name="PhotosPlace" EntityType="RazomModel.PhotosPlace" />
+    <EntitySet Name="Places" EntityType="RazomModel.Places" />
+    <EntitySet Name="PlaceType" EntityType="RazomModel.PlaceType" />
+    <EntitySet Name="Region" EntityType="RazomModel.Region" />
+    <EntitySet Name="Tag" EntityType="RazomModel.Tag" />
+    <EntitySet Name="TagToPlace" EntityType="RazomModel.TagToPlace" />
+    <EntitySet Name="Test" EntityType="RazomModel.Test" />
+    <EntitySet Name="TestData" EntityType="RazomModel.TestData" />
+    <EntitySet Name="TestType" EntityType="RazomModel.TestType" />
+    <EntitySet Name="TravelPlaces" EntityType="RazomModel.TravelPlaces" />
+    <EntitySet Name="Travels" EntityType="RazomModel.Travels" />
+    <EntitySet Name="Users" EntityType="RazomModel.Users" />
+    <EntitySet Name="UsersData" EntityType="RazomModel.UsersData" />
+    <AssociationSet Name="FK_Comments_Places" Association="RazomModel.FK_Comments_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_DataType" Association="RazomModel.FK_UsersData_DataType">
+      <End Role="DataType" EntitySet="DataType" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuturePlace_Places" Association="RazomModel.FK_FuturePlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="FuturePlace" EntitySet="FuturePlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuturePlace_Users" Association="RazomModel.FK_FuturePlace_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FuturePlace" EntitySet="FuturePlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Travels" Association="RazomModel.FK_History_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Users" Association="RazomModel.FK_History_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issues_Users" Association="RazomModel.FK_Issues_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Issues" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Travels" Association="RazomModel.FK_Message_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Users" Association="RazomModel.FK_Message_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetworkAccounts_Network" Association="RazomModel.FK_NetworkAccounts_Network">
+      <End Role="Network" EntitySet="Network" />
+      <End Role="NetworkAccounts" EntitySet="NetworkAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_Network" Association="RazomModel.FK_UsersData_Network">
+      <End Role="Network" EntitySet="Network" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetworkAccounts_Users" Association="RazomModel.FK_NetworkAccounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NetworkAccounts" EntitySet="NetworkAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FotosPlace_Places" Association="RazomModel.FK_FotosPlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="PhotosPlace" EntitySet="PhotosPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_City" Association="RazomModel.FK_Places_City">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_PlaceType" Association="RazomModel.FK_Places_PlaceType">
+      <End Role="PlaceType" EntitySet="PlaceType" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagToPlace_Places" Association="RazomModel.FK_TagToPlace_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="TagToPlace" EntitySet="TagToPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TravelPlaces_Places" Association="RazomModel.FK_TravelPlaces_Places">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="TravelPlaces" EntitySet="TravelPlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagToPlace_Tag" Association="RazomModel.FK_TagToPlace_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="TagToPlace" EntitySet="TagToPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_TestType" Association="RazomModel.FK_Test_TestType">
+      <End Role="TestType" EntitySet="TestType" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestData_Test" Association="RazomModel.FK_TestData_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="TestData" EntitySet="TestData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestData_Users" Association="RazomModel.FK_TestData_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TestData" EntitySet="TestData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TravelPlaces_Travels" Association="RazomModel.FK_TravelPlaces_Travels">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="TravelPlaces" EntitySet="TravelPlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersData_Users" Association="RazomModel.FK_UsersData_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersData" EntitySet="UsersData" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="PlaceID" Type="Int32" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_Comments_Places" FromRole="Comments" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="DataType">
+    <Key>
+      <PropertyRef Name="DataTypeID" />
+    </Key>
+    <Property Name="DataTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Vale" Type="Int32" />
+    <NavigationProperty Name="UsersData" Relationship="RazomModel.FK_UsersData_DataType" FromRole="DataType" ToRole="UsersData" />
+  </EntityType>
+  <EntityType Name="FuturePlace">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="PlaceID" Type="Int32" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_FuturePlace_Places" FromRole="FuturePlace" ToRole="Places" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_FuturePlace_Users" FromRole="FuturePlace" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="TravelID" Type="Int32" />
+    <Property Name="Rating" Type="Int32" />
+    <NavigationProperty Name="Travels" Relationship="RazomModel.FK_History_Travels" FromRole="History" ToRole="Travels" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_History_Users" FromRole="History" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Issues">
+    <Key>
+      <PropertyRef Name="IssueID" />
+    </Key>
+    <Property Name="IssueID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Massage" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_Issues_Users" FromRole="Issues" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="TravelID" Type="Int32" />
+    <Property Name="Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Travels" Relationship="RazomModel.FK_Message_Travels" FromRole="Message" ToRole="Travels" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_Message_Users" FromRole="Message" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Network">
+    <Key>
+      <PropertyRef Name="NetworkID" />
+    </Key>
+    <Property Name="NetworkID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="NetworkAccounts" Relationship="RazomModel.FK_NetworkAccounts_Network" FromRole="Network" ToRole="NetworkAccounts" />
+    <NavigationProperty Name="UsersData" Relationship="RazomModel.FK_UsersData_Network" FromRole="Network" ToRole="UsersData" />
+  </EntityType>
+  <EntityType Name="NetworkAccounts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="NetworkID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ProfileURL" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="AccessToken" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Network" Relationship="RazomModel.FK_NetworkAccounts_Network" FromRole="NetworkAccounts" ToRole="Network" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_NetworkAccounts_Users" FromRole="NetworkAccounts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="PhotosPlace">
+    <Key>
+      <PropertyRef Name="FotoID" />
+    </Key>
+    <Property Name="FotoID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="Int32" />
+    <Property Name="FileFoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="href" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_FotosPlace_Places" FromRole="PhotosPlace" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Places">
+    <Key>
+      <PropertyRef Name="PlaceID" />
+    </Key>
+    <Property Name="PlaceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceTypeID" Type="Int32" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Coordinates" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Comments" Relationship="RazomModel.FK_Comments_Places" FromRole="Places" ToRole="Comments" />
+    <NavigationProperty Name="FuturePlace" Relationship="RazomModel.FK_FuturePlace_Places" FromRole="Places" ToRole="FuturePlace" />
+    <NavigationProperty Name="PhotosPlace" Relationship="RazomModel.FK_FotosPlace_Places" FromRole="Places" ToRole="PhotosPlace" />
+    <NavigationProperty Name="Region" Relationship="RazomModel.FK_Places_City" FromRole="Places" ToRole="Region" />
+    <NavigationProperty Name="PlaceType" Relationship="RazomModel.FK_Places_PlaceType" FromRole="Places" ToRole="PlaceType" />
+    <NavigationProperty Name="TagToPlace" Relationship="RazomModel.FK_TagToPlace_Places" FromRole="Places" ToRole="TagToPlace" />
+    <NavigationProperty Name="TravelPlaces" Relationship="RazomModel.FK_TravelPlaces_Places" FromRole="Places" ToRole="TravelPlaces" />
+  </EntityType>
+  <EntityType Name="PlaceType">
+    <Key>
+      <PropertyRef Name="PlaceTypeID" />
+    </Key>
+    <Property Name="PlaceTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_Places_PlaceType" FromRole="PlaceType" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_Places_City" FromRole="Region" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="TagID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="NameTag" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="TagToPlace" Relationship="RazomModel.FK_TagToPlace_Tag" FromRole="Tag" ToRole="TagToPlace" />
+  </EntityType>
+  <EntityType Name="TagToPlace">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="Int32" />
+    <Property Name="TagID" Type="Int32" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_TagToPlace_Places" FromRole="TagToPlace" ToRole="Places" />
+    <NavigationProperty Name="Tag" Relationship="RazomModel.FK_TagToPlace_Tag" FromRole="TagToPlace" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="TestTypeID" Type="Int32" />
+    <Property Name="Value" Type="Int32" />
+    <NavigationProperty Name="TestType" Relationship="RazomModel.FK_Test_TestType" FromRole="Test" ToRole="TestType" />
+    <NavigationProperty Name="TestData" Relationship="RazomModel.FK_TestData_Test" FromRole="Test" ToRole="TestData" />
+  </EntityType>
+  <EntityType Name="TestData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="QuestionID" Type="Int32" />
+    <NavigationProperty Name="Test" Relationship="RazomModel.FK_TestData_Test" FromRole="TestData" ToRole="Test" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_TestData_Users" FromRole="TestData" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="TestType">
+    <Key>
+      <PropertyRef Name="TestTypeID" />
+    </Key>
+    <Property Name="TestTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Test" Relationship="RazomModel.FK_Test_TestType" FromRole="TestType" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="TravelPlaces">
+    <Key>
+      <PropertyRef Name="TravelPlaceID" />
+    </Key>
+    <Property Name="TravelPlaceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceID" Type="Int32" />
+    <Property Name="TravelID" Type="Int32" />
+    <NavigationProperty Name="Places" Relationship="RazomModel.FK_TravelPlaces_Places" FromRole="TravelPlaces" ToRole="Places" />
+    <NavigationProperty Name="Travels" Relationship="RazomModel.FK_TravelPlaces_Travels" FromRole="TravelPlaces" ToRole="Travels" />
+  </EntityType>
+  <EntityType Name="Travels">
+    <Key>
+      <PropertyRef Name="TravelID" />
+    </Key>
+    <Property Name="TravelID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinish" Type="DateTime" Precision="0" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="History" Relationship="RazomModel.FK_History_Travels" FromRole="Travels" ToRole="History" />
+    <NavigationProperty Name="Message" Relationship="RazomModel.FK_Message_Travels" FromRole="Travels" ToRole="Message" />
+    <NavigationProperty Name="TravelPlaces" Relationship="RazomModel.FK_TravelPlaces_Travels" FromRole="Travels" ToRole="TravelPlaces" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="FuturePlace" Relationship="RazomModel.FK_FuturePlace_Users" FromRole="Users" ToRole="FuturePlace" />
+    <NavigationProperty Name="History" Relationship="RazomModel.FK_History_Users" FromRole="Users" ToRole="History" />
+    <NavigationProperty Name="Issues" Relationship="RazomModel.FK_Issues_Users" FromRole="Users" ToRole="Issues" />
+    <NavigationProperty Name="Message" Relationship="RazomModel.FK_Message_Users" FromRole="Users" ToRole="Message" />
+    <NavigationProperty Name="NetworkAccounts" Relationship="RazomModel.FK_NetworkAccounts_Users" FromRole="Users" ToRole="NetworkAccounts" />
+    <NavigationProperty Name="TestData" Relationship="RazomModel.FK_TestData_Users" FromRole="Users" ToRole="TestData" />
+    <NavigationProperty Name="UsersData" Relationship="RazomModel.FK_UsersData_Users" FromRole="Users" ToRole="UsersData" />
+  </EntityType>
+  <EntityType Name="UsersData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="NetworkID" Type="Int32" />
+    <Property Name="DataTypeID" Type="Int32" />
+    <Property Name="Data" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DataType" Relationship="RazomModel.FK_UsersData_DataType" FromRole="UsersData" ToRole="DataType" />
+    <NavigationProperty Name="Network" Relationship="RazomModel.FK_UsersData_Network" FromRole="UsersData" ToRole="Network" />
+    <NavigationProperty Name="Users" Relationship="RazomModel.FK_UsersData_Users" FromRole="UsersData" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Comments_Places">
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="0..1" />
+    <End Role="Comments" Type="RazomModel.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_DataType">
+    <End Role="DataType" Type="RazomModel.DataType" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataType">
+        <PropertyRef Name="DataTypeID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="DataTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuturePlace_Places">
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="0..1" />
+    <End Role="FuturePlace" Type="RazomModel.FuturePlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="FuturePlace">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuturePlace_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="FuturePlace" Type="RazomModel.FuturePlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="FuturePlace">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Travels">
+    <End Role="Travels" Type="RazomModel.Travels" Multiplicity="0..1" />
+    <End Role="History" Type="RazomModel.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="History" Type="RazomModel.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issues_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="Issues" Type="RazomModel.Issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Issues">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Travels">
+    <End Role="Travels" Type="RazomModel.Travels" Multiplicity="0..1" />
+    <End Role="Message" Type="RazomModel.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="Message" Type="RazomModel.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetworkAccounts_Network">
+    <End Role="Network" Type="RazomModel.Network" Multiplicity="0..1" />
+    <End Role="NetworkAccounts" Type="RazomModel.NetworkAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Network">
+        <PropertyRef Name="NetworkID" />
+      </Principal>
+      <Dependent Role="NetworkAccounts">
+        <PropertyRef Name="NetworkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_Network">
+    <End Role="Network" Type="RazomModel.Network" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Network">
+        <PropertyRef Name="NetworkID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="NetworkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetworkAccounts_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="NetworkAccounts" Type="RazomModel.NetworkAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NetworkAccounts">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FotosPlace_Places">
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="0..1" />
+    <End Role="PhotosPlace" Type="RazomModel.PhotosPlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="PhotosPlace">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_City">
+    <End Role="Region" Type="RazomModel.Region" Multiplicity="0..1" />
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_PlaceType">
+    <End Role="PlaceType" Type="RazomModel.PlaceType" Multiplicity="0..1" />
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceType">
+        <PropertyRef Name="PlaceTypeID" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="PlaceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagToPlace_Places">
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="1" />
+    <End Role="TagToPlace" Type="RazomModel.TagToPlace" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="TagToPlace">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TravelPlaces_Places">
+    <End Role="Places" Type="RazomModel.Places" Multiplicity="0..1" />
+    <End Role="TravelPlaces" Type="RazomModel.TravelPlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="PlaceID" />
+      </Principal>
+      <Dependent Role="TravelPlaces">
+        <PropertyRef Name="PlaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagToPlace_Tag">
+    <End Role="Tag" Type="RazomModel.Tag" Multiplicity="1" />
+    <End Role="TagToPlace" Type="RazomModel.TagToPlace" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="TagID" />
+      </Principal>
+      <Dependent Role="TagToPlace">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_TestType">
+    <End Role="TestType" Type="RazomModel.TestType" Multiplicity="0..1" />
+    <End Role="Test" Type="RazomModel.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestType">
+        <PropertyRef Name="TestTypeID" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="TestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestData_Test">
+    <End Role="Test" Type="RazomModel.Test" Multiplicity="0..1" />
+    <End Role="TestData" Type="RazomModel.TestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="TestData">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestData_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="TestData" Type="RazomModel.TestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TestData">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TravelPlaces_Travels">
+    <End Role="Travels" Type="RazomModel.Travels" Multiplicity="0..1" />
+    <End Role="TravelPlaces" Type="RazomModel.TravelPlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="TravelID" />
+      </Principal>
+      <Dependent Role="TravelPlaces">
+        <PropertyRef Name="TravelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersData_Users">
+    <End Role="Users" Type="RazomModel.Users" Multiplicity="0..1" />
+    <End Role="UsersData" Type="RazomModel.UsersData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersData">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

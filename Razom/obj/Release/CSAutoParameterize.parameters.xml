@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="RazomContext-Web.config Connection String" description="RazomContext Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/DataModel.csdl|res://*/DataModel.ssdl|res://*/DataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL5009.myASP.NET;initial catalog=DB_9B1096_razom;user id=DB_9B1096_razom_admin;password=11111111;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\\Семестр\ 6\\ТСПП\\РР\\Razom\\Razom\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RazomContext']/@connectionString" />
+  </parameter>
+</parameters>

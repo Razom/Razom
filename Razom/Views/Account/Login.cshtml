@@ -1,0 +1,36 @@
+﻿@model Razom.Models.LoginModel
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<h2 class="h2">Введіть свій логін і пароль</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+           
+    <form role="form">
+        <div class="form-group"> 
+           <label for="Login" >Логін</label>          
+                @Html.TextBoxFor(m => m.UserName, new {@class = "form-control",@id = "Login", @style="width:20%"})
+                @Html.ValidationMessageFor(m => m.UserName)
+         </div>
+
+         <div class="form-group" style="padding-left:10px">
+         <label for="Password">Пароль</label>
+             
+                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "Password", @style = "width:20%;" })
+                 @Html.ValidationMessageFor(m => m.Password)
+            
+         </div>
+        <div class="form-group" style="padding-left:10px;">
+
+            <input class="btn btn-default" type="submit" value="Увійти" />
+
+        </div>
+     </form>
+    <br>
+    <p>
+        @Html.ActionLink("Зареєструйтеся", "Register") , якщо у вас немає облікового запису.
+    </p>
+}

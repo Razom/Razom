@@ -1,0 +1,36 @@
+﻿@model Razom.Models.PeopleAddForm
+
+@{
+    ViewBag.Title = "Додати користувача";
+}
+
+
+<h2 style ="position:relative;left:3%">Додати людину</h2>
+
+@using (Html.BeginForm("AddUser","Trip",FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.TripID)
+    <div style="position:relative;left:3%">
+        @Html.TextBoxFor(m => m.Token, new { @class="form-control", @style="width:20%"})
+        <input class="btn btn-success" type="submit" value="Шукати" style="margin-top:2%" />
+     </div>
+}
+
+@foreach (var item in Model.AccountsInfo.Accounts)
+{
+    <p style="margin-top:2%; position:relative; left:3%;">@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id=@item.ID }, null) - @Html.ActionLink("Додати", "ConfirmAddUser", "Trip", new { id = @Model.TripID, uid = @item.ID }, new {@class="btn btn-success" })</p>
+}
+@for (int i = 1; i <= Model.AccountsInfo.PagesCount; i++)
+{
+    if (i == Model.AccountsInfo.CurrentPage)
+    {
+        <input type="submit" class="btn btn-info" style="position:relative;bottom:10%" name="page" value="@i" />
+    }
+    else
+    {
+        using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post))
+        {
+            <input type="submit" class="btn btn-default" style="position:relative;bottom:10%" name="page" value="@i" /><input type="text" name="id" value="@Model.Token" style="display:none;" /><input type="text" name="t_id" value="@Model.TripID" style="display:none;">
+        }
+    }
+}

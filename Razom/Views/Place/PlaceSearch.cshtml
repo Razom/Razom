@@ -1,0 +1,83 @@
+﻿@model Razom.Models.PlaceCollection
+
+@{
+    ViewBag.Title = "Пошук місць";
+}
+
+
+<div>
+    @if (Model.Places.Count() == 0) 
+    {
+        <h3>За запитом "@Model.Info" місць не знайдено</h3>
+    }
+    <div style="position:relative; top:10%;left:15% ">
+        @for (int i = 0; i < Model.Places.Count;) 
+        {
+            <div class="row">
+            @for (int j = 0; j < 2 && i + j <= Model.Places.Count; j++)
+            {
+         
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    @if (Model.Places[i].PhotoUrl != "")
+                    {
+                        <img src="@Url.Content(Model.Places[i].PhotoUrl)" style="height:20%; width:auto;" alt="Images/no-photo-available.jpg" />
+                    }
+                    else
+                        if (Model.Places[i].PhotoByte != 0)
+                        {
+                        
+                            <img src="@Url.Action("DisplayPicture", "Place", new { id = Model.Places[i].PhotoByte })" alt="Images/no-photo-available.jpg" />
+                        }
+
+                  <div class="caption">
+                      <div>
+                          @Html.ActionLink(Model.Places[i].Name, "Show", "Place", new { id = Model.Places[i].PlaceID }, new { @class="btn btn-info", @style="width:90%; word-wrap:break-words"})
+                          <p>
+                              @foreach (var a in Model.Places[i].tags)
+                              {
+                                  <span>@a </span>
+                              }
+                          </p>
+                       </div>
+                   </div>
+                 </div>
+                </div>
+                { i++; }
+            }
+            </div>
+        }
+       </div>
+</div>
+        
+<div class="row" style="position:relative; left:15%">
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {
+        <div class="col-xs-1" style="width:40px">
+            @if (i == Model.CurrentPage)
+            {
+
+                using (Html.BeginForm("PagerPlaceSearch", "Place", FormMethod.Post))
+                {
+                <input type="submit" class="btn btn-info" style="position:relative;bottom:10%" name="page" value="@i" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
+
+                }
+            }
+            else
+            {
+
+                using (Html.BeginForm("PagerPlaceSearch", "Place", FormMethod.Post))
+                {
+
+                <input type="submit" class="btn btn-default" style="position:relative;bottom:10%" name="page" value="@i" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
+
+
+                }
+            }
+        </div>
+
+    }   
+</div>
+
+
+
