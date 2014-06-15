@@ -76,7 +76,7 @@ namespace Razom.Models
 
     public class AccountCollection
     {
-        public IEnumerable<AccountModel> Accounts { get; set; }
+        public List<AccountModel> Accounts { get; set; }
         public int CurrentPage { get; set; }
         public int PagesCount { get; set; }
         public string Info { get; set; }

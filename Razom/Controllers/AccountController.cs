@@ -197,7 +197,7 @@ namespace Razom.Controllers
                     byte[] image = db.Users.Find(id).Avatar;
                     if (image == null)
                     {
-                        return null;
+                        return File("/Images/no-photo-available.jpg","image/jpg");
                     }
                     else
                        return File(image, "image/jpg");
