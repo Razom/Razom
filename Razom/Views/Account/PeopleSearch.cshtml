@@ -5,43 +5,42 @@
 }
 
 
-<div>
-    @if (Model.Accounts.Count() == 0)
-    {
-        <h3>За запитом "@Model.Info" людей не знайдено</h3>
-    }
-    <div style="position:relative; top:10%;left:16% ">
-        @foreach (var item in Model.Accounts)
-        {
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img class="listlogo" src="@Url.Action("DisplayAvatar", "Account", new {id =item.ID})" alt="IMAGES" />
 
-                        <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.ID }, null)</p>
-                        <p>
-                            @Html.LabelFor(m => item.Login, "Логін ")
-                            @Html.DisplayFor(m => item.Login)
-                        </p>
-                    </div>
+@if (Model.Accounts.Count() == 0)
+{
+    <h3>За запитом "@Model.Info" людей не знайдено</h3>
+}
+<div style="position:relative; top:10%;left:16% ">
+    @foreach (var item in Model.Accounts)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img class="listlogo" src="@Url.Action("DisplayAvatar", "Account", new {id =item.ID})" alt="IMAGES" />
+
+                    <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.ID }, null)</p>
+                    <p>
+                        @Html.LabelFor(m => item.Login, "Логін ")
+                        @Html.DisplayFor(m => item.Login)
+                    </p>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
 
 <div class="row" style="position:relative; left:15%">
     @if (Model.PagesCount > 1)
     {
-        <div class="col-xs-1" ">
-        @if (2 < Model.CurrentPage)
-        {
-            using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
+        <div class="col-xs-1" >
+            @if (2 < Model.CurrentPage)
             {
-                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
-            }
+                using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
+                {
+                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
+                }
             
-        }
+            }
 
             @if (Model.CurrentPage > 1)
             {
@@ -65,14 +64,15 @@
                 }       
             }
 
-        @if (Model.CurrentPage < Model.PagesCount-1)
-        {
-            using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
+            @if (Model.CurrentPage < Model.PagesCount-1)
             {
-                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PagesCount" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
+                using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
+                {
+                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PagesCount" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
+                }
+            
             }
             
-        }
         </div>
     }
 </div>
