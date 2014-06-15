@@ -306,12 +306,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\PlaceModels.cs" />
     <Compile Include="Models\TripModels.cs" />
-    <Compile Include="NavigationRouteFilterExamples\AdministrationRouteFilter.cs" />
-    <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
-    <Compile Include="NavigationRoutes\NamedRoute.cs" />
-    <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -970,6 +964,7 @@
     <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Place\ShowComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

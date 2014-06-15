@@ -17,7 +17,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img class="listlogo" src="@Url.Action("DisplayAvatar", "Account", new {id =item.ID})" alt="IMAGES" />
-
+                    <br />  
                     <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.ID }, null)</p>
                     <p>
                         @Html.LabelFor(m => item.Login, "Логін ")

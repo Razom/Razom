@@ -25,8 +25,8 @@ namespace Razom
                 );
             routes.MapRoute(
                 null,
-                "Place/PlaceSearch/{id}/{page}",
-                new { Controller = "Place", action = "PlaceSearch", id = UrlParameter.Optional, page = UrlParameter.Optional }
+                "Place/Show/{id}/{page}",
+                new { Controller = "Place", action = "Show", id = UrlParameter.Optional, page = UrlParameter.Optional }
                 );
             routes.MapRoute(
                 name: "Default",
