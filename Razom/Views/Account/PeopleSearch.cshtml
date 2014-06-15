@@ -5,14 +5,10 @@
 }
 
 
-
-@if (Model.Accounts.Count() == 0)
-{
-    <h3>За запитом "@Model.Info" людей не знайдено</h3>
-}
-<div style="position:relative; top:10%;left:16% ">
-    @foreach (var item in Model.Accounts)
+<div >
+    @if (Model.Accounts.Count() == 0)
     {
+<<<<<<< HEAD
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
@@ -24,23 +20,54 @@
                         @Html.DisplayFor(m => item.Login)
                     </p>
                 </div>
-            </div>
-        </div>
+=======
+        <h3>За запитом "@Model.Info" людей не знайдено</h3>
     }
-</div>
+    
+    <div style="position:relative; top:10%;left:17% ">
+        @for (int i = 0; i < Model.Accounts.Count; )
+        {
+            <div class="row">
+                @for (int j = 0; j < 2 && i + j <= Model.Accounts.Count; j++)
+                {
+
+                    <div class="col-sm-6 col-md-4">
+                        
+                        <div class="thumbnail">
+                            
+                            <img class="listlogo" src="@Url.Action("DisplayAvatar", "Account", new {id =Model.Accounts[i].ID})" alt="IMAGES" />
+                            <div class="caption">
+                                <div>
+                                    <p>@Html.ActionLink(String.Format("{0} {1}", Model.Accounts[i].FirstName, Model.Accounts[i].SecondName), "Account", "Account", new { id = Model.Accounts[i].ID }, null)</p>
+                                    <p>
+                                        @Html.LabelFor(m => Model.Accounts[i].Login, "Логін ")
+                                        @Html.DisplayFor(m => Model.Accounts[i].Login)
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        { i++; }
+                }
+>>>>>>> origin/master
+            </div>
+        }
+    </div>
+ </div>
 
 <div class="row" style="position:relative; left:15%">
     @if (Model.PagesCount > 1)
     {
-        <div class="col-xs-1" >
-            @if (2 < Model.CurrentPage)
+        <div class="col-xs-1">
+        @if (2 < Model.CurrentPage)
+        {
+            using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
             {
-                using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
-                {
-                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
-                }
-            
+                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
             }
+            
+        }
 
             @if (Model.CurrentPage > 1)
             {
@@ -64,15 +91,14 @@
                 }       
             }
 
-            @if (Model.CurrentPage < Model.PagesCount-1)
+        @if (Model.CurrentPage < Model.PagesCount-1)
+        {
+            using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
             {
-                using (Html.BeginForm("PagerPeopleSearch", "Account", FormMethod.Post,new{@style="display:inline-block;"}))
-                {
-                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PagesCount" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
-                }
-            
+                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PagesCount" /><input type="text" name="id" value="@Model.Info" style="display:none;" />
             }
             
+        }
         </div>
     }
 </div>
