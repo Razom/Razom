@@ -82,20 +82,4 @@ else
                 <li>@Html.ActionLink(Model.PagesCount.ToString(), "Index", "Trip", new { id=Model.PagesCount},null)</li>
             }
         }
-    @*
-    @for (int i = 1; i <= Model.PagesCount; i++)
-    {
-        if (i == Model.CurrentPage)
-        {
-            <li class="active">
-                <a href="@String.Format("/Trip/{0}/{1}", Model.ActionUrl, i)"> @Model.CurrentPage </a>
-            </li>
-        }
-        else
-        {
-            <li>
-                <a href="@String.Format("/Trip/{0}/{1}", Model.ActionUrl, i)"> @i </a>
-            </li>
-        }
-    }*@
 </ul>
