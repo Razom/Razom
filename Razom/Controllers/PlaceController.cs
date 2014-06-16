@@ -231,7 +231,7 @@ namespace Razom.Controllers
             string id = form["id"].ToString();
             int page = int.Parse(form["page"].ToString());
             List<ShortPlace> result = getSearchList(id);
-            int pageSize = 5;
+            int pageSize = 6;
             int pCount = 0;
             if (result.Count % pageSize == 0)
             {

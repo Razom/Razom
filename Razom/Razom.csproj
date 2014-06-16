@@ -292,18 +292,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ChatHub.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CompiliantController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PlaceController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\TripController.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\AdminController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\CompiliantController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\PlaceController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\TestController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\TripController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AccountModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\PlaceModels.cs" />
     <Compile Include="Models\TripModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
