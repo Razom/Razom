@@ -46,6 +46,9 @@ namespace Razom.Models
         public bool IsEditable { get; set; }
         public bool IsAuthorized { get; set; }
         public bool IsInFavorite { get; set; }
+
+        public int CurrentPage { get; set; }
+        public int PagesCount { get; set; }
     }
 
 

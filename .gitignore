@@ -1,0 +1,9 @@
+Razom/bin/Razom.dll
+*.dll
+*.pdb
+Razom.v11.suo
+*.csproj
+Razom/bin/Razom.dll
+Razom/bin/Razom.pdb
+Razom/obj/Debug/Razom.dll
+Razom/obj/Debug/Razom.pdb

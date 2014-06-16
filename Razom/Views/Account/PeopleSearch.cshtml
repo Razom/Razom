@@ -8,6 +8,19 @@
 <div >
     @if (Model.Accounts.Count() == 0)
     {
+<<<<<<< HEAD
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img class="listlogo" src="@Url.Action("DisplayAvatar", "Account", new {id =item.ID})" alt="IMAGES" />
+                    <br />  
+                    <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.ID }, null)</p>
+                    <p>
+                        @Html.LabelFor(m => item.Login, "Логін ")
+                        @Html.DisplayFor(m => item.Login)
+                    </p>
+                </div>
+=======
         <h3>За запитом "@Model.Info" людей не знайдено</h3>
     }
     
@@ -37,6 +50,7 @@
                     </div>
                                         { i++; }
                 }
+>>>>>>> origin/master
             </div>
         }
     </div>

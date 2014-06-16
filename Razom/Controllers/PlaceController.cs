@@ -110,7 +110,7 @@ namespace Razom.Controllers
             return null;
         }
 
-        public ActionResult Show(int id = -1)
+        public ActionResult Show(int id = -1, int page = 1)
         {
             if (id != -1)
             {
@@ -134,7 +134,6 @@ namespace Razom.Controllers
                     place.PhotoBytes = (from img in db.PhotosPlace
                                         where img.FileFoto != null && img.PlaceID == id
                                         select img.FotoID).ToList();
-                    place.Comment = db.Comments.Where(c => c.PlaceID == id).ToList();
                     HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                     if (cookie != null)
                     {
@@ -150,15 +149,23 @@ namespace Razom.Controllers
                         place.IsEditable = false;
                         place.IsAuthorized = false;
                     }
-                    
+
+                    place.Comment = db.Comments.Where(c => c.PlaceID == id).ToList();
+                    place.Comment = place.Comment.Reverse();
+                    int pageSize = 3;
+                    int pCount = 0;
+                    if (place.Comment.Count() % pageSize == 0)
+                    {
+                        pCount = place.Comment.Count() / pageSize;
+                    }
+                    else
+                        pCount = place.Comment.Count() / pageSize + 1;
+                    place.Comment = place.Comment.Skip((page-1)*pageSize).Take(pageSize).ToList();
+                    place.CurrentPage = page;
+                    place.PagesCount = pCount;
                 }
                 return View(place);
             }
-            return View();
-        }
-
-        public ActionResult ShowComment(int id = -1)
-        {
             return View();
         }
 
@@ -309,6 +316,20 @@ namespace Razom.Controllers
                 }
             }
             return RedirectToAction("Show", "Place", new { id=id});
+        }
+
+        [HttpPost]
+        public ActionResult AddComment(FormCollection form)
+        {
+            int id = int.Parse(form["id"].ToString());
+            string comment = form["comment"].ToString();
+            using (var db = new RazomContext())
+            {
+                Comments c = new Comments { PlaceID = id, Message = comment };
+                db.Comments.Add(c);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Show", new { id=id});
         }
     }
 }
