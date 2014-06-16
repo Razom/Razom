@@ -260,7 +260,7 @@ namespace Razom.Controllers
                 pCount = people.Count / pageSize + 1;
 
             people = people.Skip((page-1)*pageSize).Take(pageSize).ToList();
-            PeopleAddForm paf = new PeopleAddForm() { Token = token, TripID = travel_id, AccountsInfo = new AccountCollection() { Accounts = people, CurrentPage = 1, PagesCount = pCount } };
+            PeopleAddForm paf = new PeopleAddForm() { Token = token, TripID = travel_id, AccountsInfo = new AccountCollection() { Accounts = people, CurrentPage = page, PagesCount = pCount } };
             return View("AddUser",paf);
         }
 
