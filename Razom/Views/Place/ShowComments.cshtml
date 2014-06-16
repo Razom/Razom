@@ -20,34 +20,26 @@ else
         {      
             if (2 < Model.CurrentPage)
             {
-                @*<li><a href="@string.Format("/Place/Show/{0}/{1}",Model.PlaceID,1)">1</a></li>*@
                 <li>@Html.ActionLink("1", "Show", "Place", new { id=Model.PlaceID, page=1 },null)</li>
-                <li>...</li>
+                <li><a href="">...</a></li>
             }
 
             if (Model.CurrentPage > 1)
             {
-                @*<li><a href="@string.Format("/Place/Show/{0}/{1}",Model.PlaceID,Model.CurrentPage-1)">@(Model.CurrentPage-1)</a></li>*@
-                <li>@Html.ActionLink((Model.CurrentPage-1).ToString(), "Show", "Place", new { id=Model.PlaceID, page=Model.CurrentPage-1 },null)</li>
+               <li>@Html.ActionLink((Model.CurrentPage-1).ToString(), "Show", "Place", new { id=Model.PlaceID, page=Model.CurrentPage-1 },null)</li>
             }
         
-            <li>@Html.ActionLink(Model.CurrentPage.ToString(), "Show", "Place", new { id = Model.PlaceID, page = Model.CurrentPage }, new { @class="active"})</li>
+            <li class="active">@Html.ActionLink(Model.CurrentPage.ToString(), "Show", "Place", new { id = Model.PlaceID, page = Model.CurrentPage }, null)</li>
                 
-            @*<li><a class="active" href="@string.Format("/Place/Show/{0}/{1}",Model.PlaceID,Model.CurrentPage)">@(Model.CurrentPage)</a></li>*@             
-
             if (Model.CurrentPage < Model.PagesCount)
             {
                 <li>@Html.ActionLink((Model.CurrentPage+1).ToString(), "Show", "Place", new { id=Model.PlaceID, page=Model.CurrentPage+1 },null)</li>
-                
-                @*<li><a href="@string.Format("/Place/Show/{0}/{1}",Model.PlaceID,Model.CurrentPage+1)">@(Model.CurrentPage+1)</a></li>*@
             }
 
             if (Model.CurrentPage < Model.PagesCount-1)
             {
-                <li>...</li>
+                <li><a href="">...</a></li>
                 <li>@Html.ActionLink(Model.PagesCount.ToString(), "Show", "Place", new { id=Model.PlaceID, page=Model.PagesCount },null)</li>
-                
-                @*<li><a href="@string.Format("/Place/Show/{0}/{1}",Model.PlaceID,Model.PagesCount)">@(Model.PagesCount)</a></li>*@
             }
         }
     </ul>
