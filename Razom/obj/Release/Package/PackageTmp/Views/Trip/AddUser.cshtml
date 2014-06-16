@@ -34,3 +34,61 @@
         }
     }
 }
+
+<div class="row" style="position:relative; left:15%">
+    @if (Model.AccountsInfo.Accounts.Count > 1)
+    {
+        <div class="col-xs-1" style="width:500px;">
+        @if (2 < Model.AccountsInfo.CurrentPage)
+        {
+            using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+            {
+                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" />
+                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                <input type="text" name="id" value="@Model.Token" style="display:none;" />
+            }
+            <span>...</span>
+        }
+
+            @if (Model.AccountsInfo.CurrentPage > 1)
+            {
+                using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                {
+                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.AccountsInfo.CurrentPage-1)" />
+                    <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                    <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                }       
+            }
+
+            
+            @using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+            {
+                <input type="submit" name="page" class="btn btn-info" style="position:relative;bottom:10%" value="@Model.AccountsInfo.CurrentPage" />
+                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                <input type="text" name="id" value="@Model.Token" style="display:none;" />
+            }
+                       
+            @if (Model.AccountsInfo.CurrentPage < Model.AccountsInfo.PagesCount)
+            {
+                using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post,new{@style="display:inline-block;"}))
+                {
+                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.AccountsInfo.CurrentPage+1)" />
+                    <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                    <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                }       
+            }
+
+        @if (Model.AccountsInfo.CurrentPage < Model.AccountsInfo.PagesCount-1)
+        {
+            <span>...</span>
+            using (Html.BeginForm("PagerAddUser", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+            {
+                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.AccountsInfo.PagesCount" />
+                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                <input type="text" name="id" value="@Model.Token" style="display:none;" />
+            }
+            
+        }
+        </div>
+    }   
+</div>

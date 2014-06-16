@@ -149,14 +149,33 @@ namespace Razom.Controllers
         [HttpPost]
         public ActionResult ChangeDate(TripDate model)
         {
-            using (var db = new RazomContext())
+            if (ModelState.IsValid)
             {
-                Travels t = db.Travels.Find(model.ID);
-                t.DateStart = model.Start;
-                t.DateFinish = model.Finish;
-                db.SaveChanges();
+                if (model.Start > model.Finish)
+                {
+                    ModelState.AddModelError("", "Дата початку має бути раніше за дату кінця");
+                    return View();
+                }
+                if (Math.Abs(model.Start.Year - DateTime.Now.Year) > 100)
+                {
+                    ModelState.AddModelError("", "Неправильно введена дата початку");
+                    return View();
+                }
+                if (Math.Abs(model.Finish.Year - DateTime.Now.Year) > 100)
+                {
+                    ModelState.AddModelError("", "Неправильно введена дата кінця");
+                    return View();
+                }
+                using (var db = new RazomContext())
+                {
+                    Travels t = db.Travels.Find(model.ID);
+                    t.DateStart = model.Start;
+                    t.DateFinish = model.Finish;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Show", new { id = model.ID });    
             }
-            return RedirectToAction("Show", new { id = model.ID });
+            return View();
         }
 
         public ActionResult AddUser(int id)
@@ -596,20 +615,39 @@ namespace Razom.Controllers
         [HttpPost]
         public ActionResult Create(Trip trip)
         {
-            using (var db = new RazomContext())
+            if (ModelState.IsValid)
             {
-                HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-                Users user = db.Users.Where(u => u.Login == ticket.Name).SingleOrDefault();
+                if (trip.Start > trip.Finish)
+                {
+                    ModelState.AddModelError("", "Дата початку має бути раніше за дату кінця");
+                    return View();
+                }
+                if (Math.Abs(trip.Start.Year - DateTime.Now.Year) >100)
+                {
+                    ModelState.AddModelError("", "Неправильно введена дата початку");
+                    return View();
+                }
+                if (Math.Abs(trip.Finish.Year - DateTime.Now.Year) > 100)
+                {
+                    ModelState.AddModelError("", "Неправильно введена дата кінця");
+                    return View();
+                }
+                using (var db = new RazomContext())
+                {
+                    HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                    Users user = db.Users.Where(u => u.Login == ticket.Name).SingleOrDefault();
 
-                Travels t = new Travels { DateStart = trip.Start, DateFinish = trip.Finish, Name = trip.Name};
-                db.Travels.Add(t);
-                db.SaveChanges();
-                db.History.Add(new History { UserID = user.UserID, TravelID = t.TravelID });
-                db.SaveChanges();
-                return RedirectToAction("Show", "Trip", new { id = t.TravelID });
+                    Travels t = new Travels { DateStart = trip.Start, DateFinish = trip.Finish, Name = trip.Name };
+                    db.Travels.Add(t);
+                    db.SaveChanges();
+                    db.History.Add(new History { UserID = user.UserID, TravelID = t.TravelID });
+                    db.SaveChanges();
+                    return RedirectToAction("Show", "Trip", new { id = t.TravelID });
+                }    
             }
-            return null;
+
+            return View();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using DataModel;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Razom.Models
 {
@@ -33,11 +34,14 @@ namespace Razom.Models
     public class Trip
     {
         public int ID { get; set; }
+        [Required(ErrorMessage="Необхідно ввести назву подорожі")]
         public string Name { get; set; }
         public IEnumerable<Users> Users { get; set; }
         public IEnumerable<Places> Places { get; set; }
         public IEnumerable<PostedMessage> Messages { get; set; }
+        [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         public DateTime Start { get; set; }
+        [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         public DateTime Finish { get; set; }
         public bool isEditable { get; set; }
         public int UserID { get; set; }
