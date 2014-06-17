@@ -45,6 +45,28 @@ else
                         <div class="caption">
                             <p>Статус: @Model.Trips[i].Date</p>
                             <p>@Html.ActionLink(Model.Trips[i].Name, "Show", "Trip", new { id = Model.Trips[i].ID }, new { @class="btn btn-primary"})</p>
+                            <p>
+                                @if (Model.Trips[i].PhotoUrl != null)
+                                {
+                                    <img src="@Url.Content(Model.Trips[i].PhotoUrl  ?? "")" style="height:20%; width:auto;" alt="Images/no-photo-available.jpg" />
+                                }
+                                else
+                                    if (Model.Trips[i].PhotoFile != 0)
+                                    {
+                                        <img src="@Url.Action("DisplayPlacePicture", "Trip", new { id = Model.Trips[i].PhotoFile })" alt="Images/no-photo-available.jpg" />    
+                                    }
+                                    else
+                                    {
+                                        <img src="Images/no-photo-available.jpg" />
+                                    }
+                                    
+                            </p>
+                            <p>
+                                Кількість людей: @Model.Trips[i].MembersCount
+                            </p>
+                            <p>
+                                Кількість місць: @Model.Trips[i].PlacesCount
+                            </p>
                         </div>
                     </div>
                 </div>

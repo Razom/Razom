@@ -13,6 +13,10 @@ namespace Razom.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
+        public int PhotoFile { get; set; }
+        public string PhotoUrl { get; set; }
+        public int MembersCount { get; set; }
+        public int PlacesCount { get; set; }
     }
 
     public class TripCollection

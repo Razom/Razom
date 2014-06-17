@@ -34,7 +34,27 @@ namespace Razom.Controllers
                             Name = t.Name,
                             ID = t.TravelID
                         }).ToList();
-                   
+                
+                foreach (var item in result)
+                {
+                    var photos = (from pp in db.PhotosPlace
+                                             join pl in db.Places on pp.PlaceID equals pl.PlaceID
+                                             join tp in db.TravelPlaces on pl.PlaceID equals tp.PlaceID
+                                             where tp.TravelID == item.ID
+                                             select pp);
+                    PhotosPlace photo = photos.Count() != 0 ? photos.First() : null;
+                    item.PhotoFile = photo != null ? photo.FotoID : 0;
+                    item.PhotoUrl = photo != null ? photo.href : null;
+                    item.PlacesCount = (from tp in db.TravelPlaces
+                                        join tr in db.Travels on tp.TravelID equals tr.TravelID
+                                        where tr.TravelID == item.ID
+                                        select new {tr_id = tr.TravelID, tp_id = tp.TravelID}).Count();
+                    item.MembersCount = (from h in db.History
+                                         join tr in db.Travels on h.TravelID equals tr.TravelID
+                                         where tr.TravelID == item.ID
+                                         select new { tr_id = tr.TravelID, u_id = h.HistoryID }).Count();
+                } 
+  
                 if (db.Invite.Where( i => i.UserID == user).Count() > 0)
                 {
                     invites = true;
@@ -52,6 +72,24 @@ namespace Razom.Controllers
             var list = result.Skip((id - 1) * pageSize).Take(pageSize).ToList();
             TripCollection tc = new TripCollection() { Trips = list, PagesCount = pCount, CurrentPage = id, IncomingInvites = invites, ActionUrl="Index"};
             return View(tc);
+        }
+
+        public ActionResult DisplayPlacePicture(int id = -1)
+        {
+            if (id != -1)
+            {
+                using (var db = new RazomContext())
+                {
+                    byte[] image = db.PhotosPlace.Find(id).FileFoto;
+                    if (image == null)
+                    {
+                        return null;
+                    }
+                    else
+                        return File(image, "image/jpg");
+                }
+            }
+            return null;
         }
 
         public ActionResult Show(int id)
