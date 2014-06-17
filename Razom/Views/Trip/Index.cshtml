@@ -26,56 +26,58 @@
 
 
 
-
-@if (Model.Trips.Count() == 0)
-{
-    <h3>У вас немає подорожей</h3>
-}
-else
-{
-    <div style="position:relative;left:20%;margin-top:5%; ">
-    @for (int i = 0; i < Model.Trips.Count; )
+<div style="padding-top:2%; padding-left:2%">
+    @if (Model.Trips.Count() == 0)
     {
-        <div class="row">
-            @for (int j = 0; j < 2 && i + j <= Model.Trips.Count; j++)
+        <h3>У вас немає подорожей</h3>
+    }
+    else
+    {
+        <div style="padding-top:2% ">
+            @for (int i = 0; i < Model.Trips.Count; )
             {
+                <div class="row">
+                    @for (int j = 0; j < 2 && i + j <= Model.Trips.Count; j++)
+                    {
+                        
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <p>Статус: @Model.Trips[i].Date</p>
+                                    <p>@Html.ActionLink(Model.Trips[i].Name, "Show", "Trip", new { id = Model.Trips[i].ID }, new { @class = "btn btn-primary" })</p>
+                                    <p>
+                                        @if (Model.Trips[i].PhotoUrl != null)
+                                        {
+                                            <img src="@Url.Content(Model.Trips[i].PhotoUrl  ?? "")" style="height:auto; width:100%;" alt="Images/no-photo-available.jpg" />
+                                        }
+                                        else
+                                            if (Model.Trips[i].PhotoFile != 0)
+                                            {
+                                                <img src="@Url.Action("DisplayPlacePicture", "Trip", new { id = Model.Trips[i].PhotoFile })" alt="Images/no-photo-available.jpg" />
+                                            }
+                                            else
+                                            {
+                                                <img src="Images/no-photo-available.jpg" style="height:100%; width:100%;" />
+                                            }
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <p>Статус: @Model.Trips[i].Date</p>
-                            <p>@Html.ActionLink(Model.Trips[i].Name, "Show", "Trip", new { id = Model.Trips[i].ID }, new { @class="btn btn-primary"})</p>
-                            <p>
-                                @if (Model.Trips[i].PhotoUrl != null)
-                                {
-                                    <img src="@Url.Content(Model.Trips[i].PhotoUrl  ?? "")" style="height:20%; width:auto;" alt="Images/no-photo-available.jpg" />
-                                }
-                                else
-                                    if (Model.Trips[i].PhotoFile != 0)
-                                    {
-                                        <img src="@Url.Action("DisplayPlacePicture", "Trip", new { id = Model.Trips[i].PhotoFile })" alt="Images/no-photo-available.jpg" />    
-                                    }
-                                    else
-                                    {
-                                        <img src="Images/no-photo-available.jpg" />
-                                    }
-                                    
-                            </p>
-                            <p>
-                                Кількість людей: @Model.Trips[i].MembersCount
-                            </p>
-                            <p>
-                                Кількість місць: @Model.Trips[i].PlacesCount
-                            </p>
+                                    </p>
+                                    <p>
+                                        Кількість людей: @Model.Trips[i].MembersCount
+                                    </p>
+                                    <p>
+                                        Кількість місць: @Model.Trips[i].PlacesCount
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                                        { i++; }
+                    }
                 </div>
-                { i++; }
             }
         </div>
     }
-</div>     
-}
+</div>
+
 
 <ul class="pagination" style="left:20%; position:relative;">
     @if (Model.PagesCount > 1)

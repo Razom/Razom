@@ -4,75 +4,85 @@
     ViewBag.Title = "Подорож";
 }
 
-<h2>@Model.Name  @Html.ActionLink("Змінити назву", "ChangeName", "Trip", new { id = Model.ID }, new { @class="btn btn-warning"})</h2>
-<div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-warning" style="width:100%">
-            <div class="panel-heading">Час</div>
-            <div class="panel-body" style="margin-left:5%">
-                <div class="row">
-                    @Model.Start.ToShortDateString() - @Model.Finish.ToShortDateString()
-                    @Html.ActionLink("Змінити дату", "ChangeDate", "Trip", new { id = Model.ID }, new { @class = "btn btn-warning", @style = "margin-left:3%" })
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel panel-warning" style="width:100%">
-            <div class="panel-heading">Учасники подорожі</div>
-            <div class="panel-body" style="margin-left:5%">
-                @foreach (var item in Model.Users)
-                {
+<div style="padding-left:2%; padding-top:2%">
+    <h2>@Model.Name  @Html.ActionLink("Змінити назву", "ChangeName", "Trip", new { id = Model.ID }, new { @class = "btn btn-warning" })</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-warning" style="width:100%">
+                <div class="panel-heading">Час</div>
+                <div class="panel-body" style="margin-left:5%">
                     <div class="row">
-                        <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.UserID }, null)</p>
+                        @Model.Start.ToShortDateString() - @Model.Finish.ToShortDateString()
+                        @Html.ActionLink("Змінити дату", "ChangeDate", "Trip", new { id = Model.ID }, new { @class = "btn btn-warning", @style = "margin-left:3%" })
                     </div>
-                }
-                <div class="row">
-                    <p>@Html.ActionLink("Запросити користувача", "AddUser", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-warning" style="width:100%">
-            <div class="panel-heading">Місця у подорожі</div>
-            <div class="panel-body" style="margin-left:5%">
-                @foreach (var item in Model.Places)
-                {
+        <div class="col-md-4">
+            <div class="panel panel-warning" style="width:100%">
+                <div class="panel-heading">Учасники подорожі</div>
+                <div class="panel-body" style="margin-left:5%">
+                    @foreach (var item in Model.Users)
+                    {
+                        <div class="row">
+                            <p>@Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id = item.UserID }, null)</p>
+                        </div>
+                    }
                     <div class="row">
-                        <p>@Html.ActionLink(String.Format("{0}", item.Name), "Show", "Place", new { id = item.PlaceID }, null)</p>
+                        <p>@Html.ActionLink("Запросити користувача", "AddUser", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })</p>
                     </div>
-                }
-                <div class="row">
-                    <p>@Html.ActionLink("Додати місце", "AddPlace", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })</p>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-warning" style="width:100%">
+                <div class="panel-heading">Місця у подорожі</div>
+                <div class="panel-body" style="margin-left:5%">
+                    @foreach (var item in Model.Places)
+                    {
+                        <div class="row">
+                            <p>@Html.ActionLink(String.Format("{0}", item.Name), "Show", "Place", new { id = item.PlaceID }, null)</p>
+                        </div>
+                    }
+                    <div class="row">
+                        <p>@Html.ActionLink("Додати місце", "AddPlace", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-</div>
 
+    <div style="padding-left:40%">
+        <div class="container" style="overflow:auto;">
+            <h4>Груповий діалог</h4>
 
-<div style="left:40%; position:relative;">
-    <div class="container">
-        <h4>Груповий діалог</h4>
-        
-        <ul id="messageList" class="chat">
-            @foreach (var item in Model.Messages)
+            <ul id="messageList" class="chat">
+                @foreach (var item in Model.Messages)
+                {
+                    <li><span style="font-weight:bold;">@item.AuthorName: </span>@item.Text</li>
+                }
+            </ul>
+            <input type="text" id="messageBox" />
+            <input type="button" id="sendMessage" class="btn btn-success" value="Відправити" />
+
+        </div>
+        @*
+            @using (Html.BeginForm())
             {
-                <li><span style="font-weight:bold;">@item.AuthorName: </span>@item.Text</li>
-            }
-        </ul>
-        <input type="text" id="messageBox"/>
-        <input type="button" id="sendMessage" class="btn btn-success"  value="Відправити" />
-        
+                @Html.TextArea("comment", new { @class="form-control",@rows="4", @style="width:30%"})
+                <input class="btn btn-success" type="button" value="Залишити коментар" />
+            }*@
     </div>
-    
-</div>
-@Html.ActionLink("Вийти з подорожі", "LeftTrip", "Trip", new { id = Model.ID }, new { @class="btn btn-danger", @style="left:5%; position:relative;"})
+    @Html.ActionLink("Вийти з подорожі", "LeftTrip", "Trip", new { id = Model.ID }, new { @class = "btn btn-danger", @style = "left:5%; position:relative;" })
 
+</div>
+
+@section scripts
+{
     <script src="~/Scripts/jquery.signalR-2.0.3.min.js"></script>
      
     <script src="~/signalr/hubs"></script>    
