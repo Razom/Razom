@@ -23,7 +23,7 @@ else
             if (2 < Model.CurrentPage)
             {
                 <li>@Html.ActionLink("1", "Show", "Place", new { id=Model.PlaceID, page=1 },null)</li>
-                <li><a href="">...</a></li>
+                <li><a href="#">...</a></li>
             }
 
             if (Model.CurrentPage > 1)
@@ -40,7 +40,7 @@ else
 
             if (Model.CurrentPage < Model.PagesCount-1)
             {
-                <li><a href="">...</a></li>
+                <li><a href="#">...</a></li>
                 <li>@Html.ActionLink(Model.PagesCount.ToString(), "Show", "Place", new { id=Model.PlaceID, page=Model.PagesCount },null)</li>
             }
         }
