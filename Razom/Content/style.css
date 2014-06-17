@@ -256,7 +256,8 @@ ul.menu li a {
 	font-size:27px;
 	line-height:30px;
 	color:#f2f2f2;
-    font-family:Inspiration;
+    font-family: 'Times New Roman', sans-serif;
+    font-style:italic;
 	display:inline-block;
 }
 ul.menu li a:hover, ul.menu li.current a {

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Активація аккаунта";
+}
+
+<h2>ActicateAccount</h2>
+
+@if (ViewBag.Network == "tw")
+{
+    <h3>Ваш акаунт у Twitter активований і ваші дані використовуються тут!</h3>
+}
+else
+    if (ViewBag.Network == "vk")
+    {
+        <h3>Ваш акаунт у Вконтакте активований і ваші дані використовуються тут!</h3>
+    }
+    else
+    {
+        <h3>@ViewBag.Network</h3>
+    }
+
+@Html.ActionLink("На головну","Index","Home")
+@Html.ActionLink("До профілю", "MyAccount", "Account", new { id=ViewBag.UserID },null)

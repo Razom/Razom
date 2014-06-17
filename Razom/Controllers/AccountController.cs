@@ -14,6 +14,9 @@ using System.IO;
 using DataModel;
 using PeopleSearchEngine;
 using FoursquareLib;
+using TwitterLib;
+using VKLib;
+using System.Threading;
 
 namespace Razom.Controllers
 {
@@ -339,6 +342,39 @@ namespace Razom.Controllers
             {
                 return Redirect("https://foursquare.com/oauth2/authenticate?client_id=YRRHVMJV1QOGLS23RLWMKN2S3NF1B13C1ROF22N5Z1UT2YYN&response_type=code&redirect_uri=http://brainiac09-001-site1.myasp.net/Account/ConfirmNetworkAccount");
             }
+            else
+                if (id == "tw")
+                {
+                    HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                    int userID = 0;
+                    using(var db = new RazomContext())
+	                {
+		                userID = db.Users.Where(u => u.Login == ticket.Name).SingleOrDefault().UserID;
+	                }
+                    Thread task = new Thread(t => Twitter.WriteTwitterDataToDB(userID));
+                    task.Start();
+                    ViewBag.Network = id;
+                    ViewBag.UserID = userID;
+                    return View();
+                }
+                else
+                    if (id == "vk")
+                    {
+                        HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                        int userID = 0;
+                        using (var db = new RazomContext())
+                        {
+                            userID = db.Users.Where(u => u.Login == ticket.Name).SingleOrDefault().UserID;
+                        }
+                        Thread task = new Thread(t => VK.WriteUserVkDataToDB(userID));
+                        task.Start();
+                        ViewBag.Network = id;
+                        ViewBag.UserID = userID;
+                        return View();    
+                    }
+            ViewBag.Network = "Така соціальна мережа не підтримуєтсья!";
             return View();
         }
 
