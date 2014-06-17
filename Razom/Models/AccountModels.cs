@@ -57,7 +57,7 @@ namespace Razom.Models
         public string FourSquareAccount { get; set; }
         [Phone(ErrorMessage = "Не правильно введено телефон")]
         public string Phone { get; set; }
-
+        public string About { get; set; }
         public int ID { get; set; }
     }
 
@@ -80,5 +80,7 @@ namespace Razom.Models
         public int CurrentPage { get; set; }
         public int PagesCount { get; set; }
         public string Info { get; set; }
+
+        public IEnumerable<string> Associations { get; set; }
     }
 }

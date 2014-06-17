@@ -134,6 +134,7 @@ namespace Razom.Controllers
                     place.PhotoBytes = (from img in db.PhotosPlace
                                         where img.FileFoto != null && img.PlaceID == id
                                         select img.FotoID).ToList();
+                    place.Coordinates = p.Coordinates;
                     HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                     if (cookie != null)
                     {
@@ -151,7 +152,7 @@ namespace Razom.Controllers
                     }
 
                     place.Comment = db.Comments.Where(c => c.PlaceID == id).ToList();
-                    place.Comment = place.Comment.Reverse();
+                    place.Comment.Reverse();
                     int pageSize = 3;
                     int pCount = 0;
                     if (place.Comment.Count() % pageSize == 0)
@@ -180,6 +181,10 @@ namespace Razom.Controllers
                 foreach (int item in ids)
                 {
                     Places p = db.Places.Find(item);
+                    if (p == null)
+                    {
+                        continue;
+                    }
                     List<string> Tags = (from t in db.Tag
                                          join ttp in db.TagToPlace on t.TagID equals ttp.TagID
                                          where ttp.PlaceID == item
@@ -194,7 +199,7 @@ namespace Razom.Controllers
                         PhotoByte = photo.Count != 0 ? photo.First().FotoID : 0,
                         PhotoUrl = photoUrl.Count != 0 ? photoUrl.First().href : "",
                         Rating = p.Rating ?? 0,
-                        PlaceType = p.PlaceType != null ? db.PlaceType.Find(p.PlaceType).Type : string.Empty,
+                        PlaceType = p.PlaceType != null ? db.PlaceType.Find(p.PlaceTypeID).Type : string.Empty,
                         tags = Tags
                     };
                     result.Add(sp);
