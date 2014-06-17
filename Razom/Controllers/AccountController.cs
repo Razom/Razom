@@ -142,9 +142,11 @@ namespace Razom.Controllers
                         db.Database.ExecuteSqlCommand("UPDATE Users SET Phone={0}, Avatar={1} WHERE UserID={2}", model.Phone, image, model.ID);    
                     }
                     
-                    NetworkAccounts a1 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "foursquare").NetworkID, ProfileURL = model.FourSquareAccount.Substring(model.FourSquareAccount.LastIndexOf('/')+1) };
-                    NetworkAccounts a2 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "twitter").NetworkID, ProfileURL = model.TwitterAccount.Replace("@","") };
-                    NetworkAccounts a3 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "vk").NetworkID, ProfileURL = model.VkAccount.Substring(model.VkAccount.LastIndexOf('/')+1) };
+                    NetworkAccounts a1 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "foursquare").NetworkID, ProfileURL = model.FourSquareAccount != null? model.FourSquareAccount.Substring(model.FourSquareAccount.LastIndexOf('/')+1):"" };
+                    NetworkAccounts a2 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "twitter").NetworkID, ProfileURL = model.TwitterAccount != null? model.TwitterAccount.Replace("@",""):"" };
+                    NetworkAccounts a3 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "vk").NetworkID, ProfileURL = model.VkAccount != null? model.VkAccount.Substring(model.VkAccount.LastIndexOf('/')+1): "" };
+                    Users user = db.Users.Find(model.ID);
+                    user.Phone = model.Phone;
                     if(!string.IsNullOrEmpty(model.FourSquareAccount))
                         db.NetworkAccounts.Add(a1);
                     if (!string.IsNullOrEmpty(model.TwitterAccount))

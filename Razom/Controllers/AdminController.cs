@@ -16,19 +16,7 @@ namespace Razom.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            //ServiceReference1.Service1Client proxy = new ServiceReference1.Service1Client();
-            //ViewBag.Message = proxy.getResponse();
-            //proxy.Close();
-            List<ShortPlace> list = new List<ShortPlace>
-            {
-             new ShortPlace{ Name="vania", City="Поїхали"},
-             new ShortPlace{ Name="vasia", City = "Я ще не зібрався"},
-             new ShortPlace{ Name="vania", City="Ти довго ще?"},
-             new ShortPlace{ Name="vania", City="Ти довго ще?"},
-             new ShortPlace{ Name="vasia", City="Зараз уже йду..."},
-             new ShortPlace{ Name="vasia", City="аааа аааа аааааа аааааа ааааааа аааааа аааа ааааа аааааа ааааааа аааа ааааа аааа аааа ааа ааа"}
-            };
-            return View(list);
+            return View();
         }
 
         [Authorize]
@@ -38,6 +26,15 @@ namespace Razom.Controllers
             proxy.runParce();
             proxy.Close();
             return RedirectToAction("Index","Home");
+        }
+
+        [Authorize]
+        public ActionResult TestConnection()
+        {
+            ServiceReference1.Service1Client proxy = new ServiceReference1.Service1Client();
+            ViewBag.Message = proxy.getResponse();
+            proxy.Close();
+            return View();
         }
 
         [ChildActionOnly]
