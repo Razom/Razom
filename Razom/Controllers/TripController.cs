@@ -227,7 +227,7 @@ namespace Razom.Controllers
             List<AccountModel> people = new List<AccountModel>();
             using (var db = new RazomContext())
             {
-                List<int> peopleIDs = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(model.Token);
+                List<KeyValuePair<int,List<string>>> peopleIDs = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(model.Token);
                 List<int> peopleInThisTrip = (from u in db.Users
                                               join h in db.History on u.UserID equals h.UserID
                                               join tr in db.Travels on h.TravelID equals tr.TravelID
@@ -241,16 +241,17 @@ namespace Razom.Controllers
              
                 foreach (var item in peopleIDs)
                 {
-                    if (!(peopleInThisTrip.Contains(item) || invitedPeople.Contains(item)))
+                    if (!(peopleInThisTrip.Contains(item.Key) || invitedPeople.Contains(item.Key)))
                     {
-                        people.Add(db.Users.Where(u => u.UserID == item).Select(u => new AccountModel
+                        people.Add(db.Users.Where(u => u.UserID == item.Key).Select(u => new AccountModel
                           {
                               Login = u.Phone,
                               ID = u.UserID,
                               FirstName = u.FirstName,
                               SecondName = u.SecondName,
                               EMail = u.Email,
-                              Phone = u.Phone
+                              Phone = u.Phone,
+                              Associations = item.Value
                           }).FirstOrDefault());
                     }
                 }
@@ -279,7 +280,7 @@ namespace Razom.Controllers
             string token = form["id"].ToString();
             using (var db = new RazomContext())
             {
-                List<int> peopleIDs = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(token);
+                List<KeyValuePair<int, List<string>>> peopleIDs = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(token);
                 List<int> peopleInThisTrip = (from u in db.Users
                                               join h in db.History on u.UserID equals h.UserID
                                               join tr in db.Travels on h.TravelID equals tr.TravelID
@@ -292,16 +293,17 @@ namespace Razom.Controllers
                                            select u.UserID).ToList();
                 foreach (var item in peopleIDs)
                 {
-                    if (!(peopleInThisTrip.Contains(item)||invitedPeople.Contains(item)))
+                    if (!(peopleInThisTrip.Contains(item.Key)||invitedPeople.Contains(item.Key)))
                     {
-                        people.Add(db.Users.Where(u => u.UserID == item).Select(u => new AccountModel
+                        people.Add(db.Users.Where(u => u.UserID == item.Key).Select(u => new AccountModel
                         {
                             Login = u.Phone,
                             ID = u.UserID,
                             FirstName = u.FirstName,
                             SecondName = u.SecondName,
                             EMail = u.Email,
-                            Phone = u.Phone
+                            Phone = u.Phone,
+                            Associations = item.Value
                         }).FirstOrDefault());
                     }
                 }

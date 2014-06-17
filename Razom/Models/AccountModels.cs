@@ -72,6 +72,8 @@ namespace Razom.Models
         public string FoursquareAccount { get; set; }
         public string TwitterAccount { get; set; }
         public string VKAccount { get; set; }
+
+        public IEnumerable<string> Associations { get; set; }
     }
 
     public class AccountCollection
@@ -80,7 +82,5 @@ namespace Razom.Models
         public int CurrentPage { get; set; }
         public int PagesCount { get; set; }
         public string Info { get; set; }
-
-        public IEnumerable<string> Associations { get; set; }
     }
 }
