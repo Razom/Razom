@@ -6,15 +6,14 @@
 }
 else
 {
-    <ul class="list-group">
-        @foreach (var item in Model.Comment)
-        {
-
-        <li class="list-group-item">@item.Message</li>
-
-        }
-    </ul>
-
+    foreach (var item in Model.Comment)
+    {
+        <p>
+            @item.Message
+        </p>
+    }
+    
+    
     <ul class="pagination" style="left:20%; position:relative;">
         @if (Model.PagesCount > 1)
         {      
