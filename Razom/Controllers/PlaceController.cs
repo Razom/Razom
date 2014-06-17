@@ -27,22 +27,37 @@ namespace Razom.Controllers
                 result = (from pl in con.Places
                          join fpl in con.FuturePlace on pl.PlaceID equals fpl.PlaceID
                          //join u in con.Users on fpl.UserID equals u.UserID
-                         join p in con.PhotosPlace on pl.PlaceID equals p.PlaceID into gj
+                         //join p in con.PhotosPlace on pl.PlaceID equals p.PlaceID into gj
                          where fpl.UserID == userID
-                         from subres in gj.DefaultIfEmpty()
+                         //from subres in gj.DefaultIfEmpty()
                          select new ShortPlace
                          {
                              ID = fpl.ID,
                              Name = pl.Name,
                              Rating = pl.Rating ?? 0,
                              PlaceID = pl.PlaceID,
-                             PhotoUrl = subres == null ? " ": subres.href,
-                             PhotoByte = subres.FotoID,
+                             //PhotoUrl = subres == null ? " ": subres.href,
+                             //PhotoByte = subres.FotoID,
                              City = con.Region.FirstOrDefault(r => r.CityID == pl.CityID).Name,
                              PlaceType = con.PlaceType.FirstOrDefault(pt => pt.PlaceTypeID == pl.PlaceTypeID).Type
                          }).ToList();
+                
                 result.ForEach(r =>
                 {
+                    var photo = con.PhotosPlace.Where(pp => pp.PlaceID == r.PlaceID);
+                    if (photo != null)
+                    {
+                        if (photo.First().FileFoto != null)
+                        {
+                            r.PhotoByte = photo.First().FotoID;
+                        }
+                        else
+                            if (photo.First().href != null )
+                            {
+                                r.PhotoUrl = photo.First().href;
+                            }    
+                    }
+                    
                     r.tags = (from t in con.Tag
                               join ttp in con.TagToPlace on t.TagID equals ttp.TagID
                               where ttp.PlaceID == r.PlaceID

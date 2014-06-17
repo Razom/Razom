@@ -192,7 +192,8 @@ namespace Razom.Controllers
                  Phone = user.Phone ?? "",
                  FoursquareAccount = fs != null? fs.ProfileURL: "",
                  TwitterAccount = tw != null? tw.ProfileURL: "",
-                 VKAccount = vk != null? vk.ProfileURL: ""
+                 VKAccount = vk != null? vk.ProfileURL: "",
+                 Associations = db.UsersData.Where(d => d.UserID == user.UserID && d.DataTypeID == db.DataType.Where(dt => dt.Type == "AboutMe").FirstOrDefault().DataTypeID).Select(t => t.Data).ToList()
                 };
                 return View(a);
             }
@@ -338,7 +339,8 @@ namespace Razom.Controllers
                     Phone = user.Phone ?? "",
                     FoursquareAccount = fs != null ? fs.ProfileURL : "",
                     TwitterAccount = tw != null ? tw.ProfileURL : "",
-                    VKAccount = vk != null ? vk.ProfileURL : ""
+                    VKAccount = vk != null ? vk.ProfileURL : "",
+                    Associations = db.UsersData.Where(d => d.UserID == user.UserID && d.DataTypeID == db.DataType.Where(dt => dt.Type == "AboutMe").FirstOrDefault().DataTypeID).Select(t => t.Data).ToList()
                 };
                 return View(a);
             }

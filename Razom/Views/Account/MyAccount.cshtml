@@ -94,6 +94,23 @@
             </div>
         </li>
         <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Про себе</label>
+                </div>
+                <div class="col-md-4">
+                    @if (@Model.Associations.Count() > 0)
+                    {
+                        <span>@Model.Associations.First() </span>
+                        foreach (var item in Model.Associations.Skip(1))
+                        {
+                            <span>, @item </span>
+                        }    
+                    }
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
             <label>Ви можете: </label>
             @Html.ActionLink("Вийти", "LogOff", "Account", new { @class = "btn btn-primary" })
             @Html.ActionLink("Видалити акаунт", "DeleteAccount", "Account", new { @class = "btn btn-danger" })
