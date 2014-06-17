@@ -56,28 +56,29 @@
 
     </div>
 
+    <div class="row" style="">
+        <div style="">
+            <div class="container" style="width:60%">
+                <h4>Груповий діалог</h4>
+                <div style="height:200px; width:100%; overflow-y:scroll" class="panel-body">
+                    <ul id="messageList" class="list-group">
+                        @foreach (var item in Model.Messages)
+                        {
+                            <li class="list-group-item"><span class=" label label-primary" style="font-weight:bold;">@item.AuthorName:</span> @item.Text</li>
+                        }
+                    </ul>
+                </div>
+            </div>
 
-    <div style="padding-left:40%">
-        <div class="container" style="overflow:auto;">
-            <h4>Груповий діалог</h4>
-
-            <ul id="messageList" class="chat">
-                @foreach (var item in Model.Messages)
-                {
-                    <li><span style="font-weight:bold;">@item.AuthorName: </span>@item.Text</li>
-                }
-            </ul>
-            <input type="text" id="messageBox" />
-            <input type="button" id="sendMessage" class="btn btn-success" value="Відправити" />
 
         </div>
-        @*
-            @using (Html.BeginForm())
-            {
-                @Html.TextArea("comment", new { @class="form-control",@rows="4", @style="width:30%"})
-                <input class="btn btn-success" type="button" value="Залишити коментар" />
-            }*@
     </div>
+    <div class="row" style="padding-top:2%;padding-left:40%">
+        <textarea class="form-control" style="width:50%;" rows="3" id="messageBox"></textarea>
+        <input type="button" id="sendMessage" class="btn btn-success" value="Відправити" />
+    </div>
+   
+
     @Html.ActionLink("Вийти з подорожі", "LeftTrip", "Trip", new { id = Model.ID }, new { @class = "btn btn-danger", @style = "left:5%; position:relative;" })
 
 </div>
