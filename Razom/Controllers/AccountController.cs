@@ -264,7 +264,7 @@ namespace Razom.Controllers
                         FoursquareAccount = fs != null ? fs.ProfileURL : "",
                         TwitterAccount = tw != null ? tw.ProfileURL : "",
                         VKAccount = vk != null ? vk.ProfileURL : "",
-                    
+                        Associations = item.Value
                     };
                     result.Add(a);
                 }
