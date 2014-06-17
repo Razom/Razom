@@ -9,45 +9,20 @@
     <h2>Створення подорожі</h2>
     @using (Html.BeginForm("Create", "Trip", FormMethod.Post))
     {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-
         <div class="form-horizontal">
-
+            
             @Html.LabelFor(m => m.Name, "Назва подорожі")
             @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control", @style = "width:20%" })
-            @Html.ValidationMessageFor(model => model.Name)
-            <br />
+
             @Html.LabelFor(m => m.Start, "Дата початку")
-            @Html.TextBoxFor(model => model.Start, new { @class = "form-control datepicker", @style= "width:20%"})
-            @Html.ValidationMessageFor(model => model.Start)
+            @Html.TextBoxFor(m => m.Start, htmlAttributes: new { @class = "form-control", @style="width:20%" })
+
             <br />
             @Html.LabelFor(m => m.Finish, "Дата кінця")
-            @Html.TextBoxFor(model => model.Finish, new { @class = "form-control datepicker", @style= "Width:20%"})
-            @Html.ValidationMessageFor(model => model.Finish)
+            @Html.TextBoxFor(m => m.Finish, htmlAttributes: new { @class = "form-control", @style = "width:20%" })
+
             <br />
             <input type="submit" value="Продовжити" class="btn btn-success" style="margin-top:2%"/>
-        </div>
+            </div>
     }
 </div>
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
-
-<script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-        $.fn.datepicker.dates['ua'] = {
-            days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"],
-            daysShort: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
-            daysMin: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
-            months: ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
-            monthsShort: ["Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"],
-            today: "Сьогодні",
-            clear: "Очистити"
-        };
-        $('.datepicker').datepicker({
-            format: "dd.mm.yy",
-            language: "ua",
-            todayHighlight: true
-        }); //Initialise any date pickers
-    });
-</script>

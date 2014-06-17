@@ -87,8 +87,11 @@ E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\ko\System.Spatial.res
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\ru\System.Spatial.resources.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\zh-Hans\System.Spatial.resources.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\zh-Hant\System.Spatial.resources.dll
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\obj\Debug\Razom.csprojResolveAssemblyReference.cache
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\obj\Debug\Razom.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\obj\Debug\Razom.pdb
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\GridMvc.dll
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Grid.Mvc.Ajax.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.AspNet.SignalR.Core.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Owin.dll
@@ -100,6 +103,8 @@ E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.AspNet.Sign
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Owin.xml
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Owin.Host.SystemWeb.xml
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Owin.Security.xml
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\MarkdownDeep.dll
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\MarkdownDeep.pdb
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Web.Mvc.dll
 C:\Users\dollhead\Documents\GitHub\Razom-1\Razom\bin\Razom.dll.config
 C:\Users\dollhead\Documents\GitHub\Razom-1\Razom\bin\Razom.dll
@@ -253,4 +258,3 @@ E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Threading.T
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\Microsoft.Threading.Tasks.Extensions.xml
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\VkNet.pdb
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\VkNet.xml
-E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\obj\Debug\Razom.csprojResolveAssemblyReference.cache

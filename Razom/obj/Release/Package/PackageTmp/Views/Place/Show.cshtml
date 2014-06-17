@@ -78,15 +78,37 @@
     </div>
     <div class="panel-body">
         <div>
-            @{Html.RenderPartial("ShowComments", Model);}
-            @using (Html.BeginForm("AddComment","Place",FormMethod.Post))
+            @*@using(Ajax.BeginForm(new AjaxOptions() { UpdateTargetId = "tableData" }))
+                {
+                    <table>
+                        <tbody id="tableData">
+                            Html.Action("ShowComments", new {id = Model.PlaceID});
+                        </tbody>
+                    </table>
+                    Html.TextArea("id");
+                    <input type="submit" value="Залишити коментар">
+                }*@
+            @if (Model.Comment.Count() == 0)
             {
-                
-                @Html.TextArea("comment","", new { @class = "form-control", @rows = "4", @style = "width:40%;margin-left:1%;" })
-                <br />
-                <input style="display:none;" name="id" value="@Model.PlaceID" />
-                <input type="submit" style="margin-left: 1%;" class="btn btn-success" value="Залишити коментар" />
+                <p>Немає коментарів</p>
             }
+            else
+            {
+                <table>
+                    <tbody>
+                        @foreach (var item in Model.Comment)
+                        {
+                            <tr>
+                                <td>@item.Message</td>
+                                <td>@item.Time</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            @Html.TextArea("newcomment", new { @class = "form-control", @rows = "4", @style = "width:40%;margin-left:1%;" })
+            <br />
+            <input type="button" style="margin-left: 1%;" class="btn btn-success" value="Залишити коментар" />
         </div>
     </div>
 </div>

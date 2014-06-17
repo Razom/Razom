@@ -33,6 +33,25 @@ else
     }
 </div>     
 }
+@*
+<ul class="pagination" style="left:20%; position:relative;">
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <li class="active">
+                <a href="@String.Format("/Trip/Invite/" + i)"> @Model.CurrentPage </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@String.Format("/Trip/Invite/" + i)"> @i </a>
+            </li>
+        }
+    }
+</ul>
+*@
 
 <ul class="pagination" style="left:20%; position:relative;">
     @if (Model.PagesCount > 1)

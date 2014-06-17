@@ -35,30 +35,21 @@ else
 }
 
 <ul class="pagination" style="left:20%; position:relative;">
-    @if (Model.PagesCount > 1)
-        {      
-            if (2 < Model.CurrentPage)
-            {
-                <li>@Html.ActionLink("1", "Invite", "Place", new { id=1 },null)</li>
-                <li><a href="">...</a></li>
-            }
-
-            if (Model.CurrentPage > 1)
-            {
-               <li>@Html.ActionLink((Model.CurrentPage-1).ToString(), "Invite", "Trip", new { id=Model.CurrentPage-1},null)</li>
-            }
-        
-            <li class="active">@Html.ActionLink(Model.CurrentPage.ToString(), "Invite", "Trip", new { id = Model.CurrentPage}, null)</li>
-                
-            if (Model.CurrentPage < Model.PagesCount)
-            {
-                <li>@Html.ActionLink((Model.CurrentPage+1).ToString(), "Invite", "Trip", new { id=Model.CurrentPage+1},null)</li>
-            }
-
-            if (Model.CurrentPage < Model.PagesCount-1)
-            {
-                <li><a href="">...</a></li>
-                <li>@Html.ActionLink(Model.PagesCount.ToString(), "Invite", "Trip", new { id=Model.PagesCount},null)</li>
-            }
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <li class="active">
+                <a href="@String.Format("/Trip/Invite/" + i)"> @Model.CurrentPage </a>
+            </li>
         }
+        else
+        {
+            <li>
+                <a href="@String.Format("/Trip/Invite/" + i)"> @i </a>
+            </li>
+        }
+    }
 </ul>
+
+
