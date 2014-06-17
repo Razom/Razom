@@ -4,93 +4,186 @@
     ViewBag.Title = "Місце";
 }
 
-<h2>@Model.Name</h2>
+
 @*@if (@Model.IsEditable)
 {
     <p>@Html.ActionLink("Редагувати", "Edit", "Place",null, new {@class="btn btn-warning", @style="margin-left:1%" })</p>
 }*@
-<div class="mainPhoto">
-    @if (Model.PhotoUrls.Count() > 0)
-    {
-        <img src="@Model.PhotoUrls.First()" style="margin-left:1%; margin-top:1%" alt="photo" />
-    }
-    else
-    {
-        <img style ="margin-left:1%; margin-top:1%" src="@Url.Action("DisplayPicture", "Place", new {id =Model.PhotoBytes.First()})" alt="photo" />
-    }
-</div>
-<div class="placeInfo panel panel-primary" style="position:absolute;left:45%; top:28%">
-    <div class="panel-heading" style="background-color: #555; border-color: #555; ">
-        <h3 class="panel-title">Інформація про місце</h3>
-    </div>
-    <ul class="list-group">
-        @if (!string.IsNullOrEmpty(Model.City))
-        {
-            <li class="list-group-item">
-            <div class="row">
-                <div class="col-md-4">
-                    @Html.LabelFor(m => m.City, "Місто: ")
-                </div>
-                <div class="col-md-4">
-                    @Html.DisplayFor(m => m.City)
-                </div>
-            </div>
-            </li>       
+
+@{
+    string[] coord = Model.Coordinates.Split(' ');
+}
+<script src="http://api-maps.yandex.ru/1.1/index.xml?key=APRLn1MBAAAAGzIBUwMAFrDG03rgYWmGNaKtnzbQsCzaZikAAAAAAAAAAAA6ZagwCKKHrGW1co_syfLK8Yqp0A=="
+        type="text/javascript"></script>
+<script type="text/javascript">
+        window.onload = function () {
+            var map = new YMaps.Map(document.getElementById("YMapsID"));
+            map.setCenter(new YMaps.GeoPoint(@coord[1], @coord[0]), 17);
+            var placemark = new YMaps.Placemark(new YMaps.GeoPoint(@coord[1], @coord[0]));
+            map.addOverlay(placemark); 
             
         }
+</script>
 
-        @if (!string.IsNullOrEmpty(Model.PlaceType))
-        {
-           <li class="list-group-item">
-            <div class="row">
-                <div class="col-md-4">
-                    @Html.LabelFor(m => m.PlaceType, "Тип місця: ")
-                </div>
-                <div class="col-md-4">
-                    @Html.DisplayFor(m => m.PlaceType)
+<div style="margin-left:2%;position:relative">
+    <h2>@Model.Name</h2>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="thumbnail">
+                @if (Model.PhotoUrls.Count() > 0)
+                {
+                    <div class="mainPhoto" style="width:100%; height:auto">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%; height:100%; position:relative">
+                            <ol class="carousel-indicators">
+                                @for (int i = 0; i < Model.PhotoUrls.Count(); i++)
+                                {
+                                    <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+                                }
+                            </ol>
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < Model.PhotoUrls.Count(); i++)
+                                {
+                                    if (0 == i)
+                                    {
+                                        <div class="active item">
+                                            <img class="img-responsive" src=@Model.PhotoUrls[i] alt="">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="item">
+                                            <img class="img-responsive" src=@Model.PhotoUrls[i] alt="">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+                            </a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+
+                            </a>
+
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                    <img style="margin-left:1%; margin-top:1%" src="@Url.Action("DisplayPicture", "Place", new {id =Model.PhotoBytes.First()})" alt="photo" />
+                }
+                <div class="caption">
+                    <h3>Фото</h3>
                 </div>
             </div>
-            </li>              
-        }
 
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-md-4">
-                    @Html.LabelFor(m => m.Rating, "Рейтинг")
-                </div>
-                <div class="col-md-4">
-                    @Html.DisplayFor(m => m.Rating)
-                </div>
             </div>
-        </li>        
+            
+       
+        <div class="col-xs-4">
+            <div class="thumbnail">
+                <div id="YMapsID" style="width:400px;height:300px"></div>
+                <div class="caption">
+                    <h3>Приблизне місцезнаходження</h3>
+                </div>
+            </div>          
+        </div>
 
-        
-        
 
-    </ul>
-</div>
+        <div class="col-xs-3">
+            <div class="placeInfo panel panel-primary" >
+                <div class="panel-heading" style="background-color: #555; border-color: #555; ">
+                    <h3 class="panel-title">Інформація про місце</h3>
+                </div>
+                <ul class="list-group">
+                    @if (!string.IsNullOrEmpty(Model.City))
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    @Html.LabelFor(m => m.City, "Місто: ")
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DisplayFor(m => m.City)
+                                </div>
+                            </div>
+                        </li>
+
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.PlaceType))
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    @Html.LabelFor(m => m.PlaceType, "Тип місця: ")
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DisplayFor(m => m.PlaceType)
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-5">
+                                @Html.LabelFor(m => m.Address, "Адреса")
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(m => m.Address)
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-5">
+                                @Html.LabelFor(m => m.Coordinates, "Координати")
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(m => m.Coordinates)
+                            </div>
+                        </div>
+                    </li>
+                    @if (Model.IsAuthorized && !Model.IsInFavorite)
+                    { 
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    @Html.ActionLink("Додати місце до обраного", "AddToFavorite", "Place", new { id = Model.PlaceID }, new { @class="btn btn-success"})
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
 
 
-
-<div class="panel panel-default" style="position:relative;margin-left: 1%; margin-top: 2%; width:70%">
-    <div class="panel-heading">
-        <h3 class="panel-title">Коментарі</h3>
     </div>
-    <div class="panel-body">
-        <div>
-            @{Html.RenderPartial("ShowComments", Model);}
-            @using (Html.BeginForm("AddComment","Place",FormMethod.Post))
-            {
-                
-                @Html.TextArea("comment","", new { @class = "form-control", @rows = "4", @style = "width:40%;margin-left:1%;" })
-                <br />
-                <input style="display:none;" name="id" value="@Model.PlaceID" />
-                <input type="submit" style="margin-left: 1%;" class="btn btn-success" value="Залишити коментар" />
-            }
+
+
+
+
+    <div class="panel panel-default" style="position:relative;margin-left: 1%; margin-top: 2%; width:70%">
+        <div class="panel-heading">
+            <h3 class="panel-title">Коментарі</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                @{Html.RenderPartial("ShowComments", Model);}
+                @using (Html.BeginForm("AddComment", "Place", FormMethod.Post))
+                {
+
+                    @Html.TextArea("comment", "", new { @class = "form-control", @rows = "4", @style = "width:40%;margin-left:1%;" })
+                    <br />
+                    <input style="display:none;" name="id" value="@Model.PlaceID" />
+                    <input type="submit" style="margin-left: 1%;" class="btn btn-success" value="Залишити коментар" />
+                }
+            </div>
         </div>
     </div>
+
 </div>
-@if (Model.IsAuthorized && !Model.IsInFavorite)
-	{
-	    @Html.ActionLink("Додати місце до обраного", "AddToFavorite", "Place", new { id = Model.PlaceID }, null)	 
-	}
+    

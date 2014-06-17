@@ -146,6 +146,11 @@ namespace Razom.Controllers
                     NetworkAccounts a2 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "twitter").NetworkID, ProfileURL = model.TwitterAccount != null? model.TwitterAccount.Replace("@",""):"" };
                     NetworkAccounts a3 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "vk").NetworkID, ProfileURL = model.VkAccount != null? model.VkAccount.Substring(model.VkAccount.LastIndexOf('/')+1): "" };
                     Users user = db.Users.Find(model.ID);
+                    string[] abouts = model.About.Split(' ', ',', '.', '?', ';', ':', '<', '>', '\\', '/', '[', ']', '{', '}', '!', '@', '#', '$', '%', '^', '&', '№');
+                    foreach (string item in abouts)
+                    {
+                        db.UsersData.Add(new UsersData { DataTypeID = db.DataType.Where(m => m.Type == "AboutMe").First().DataTypeID, Data = item, UserID = model.ID, });
+                    }
                     user.Phone = model.Phone;
                     if(!string.IsNullOrEmpty(model.FourSquareAccount))
                         db.NetworkAccounts.Add(a1);
@@ -236,14 +241,14 @@ namespace Razom.Controllers
 
         private List<AccountModel> getSearchList(string token)
         {
-            List<int> ids = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(token);
+            List<KeyValuePair<int ,List<string>>> ids = PeopleSearchEngine.PeopleSearchEngine.GetSearchResultIndexes(token);
             List<AccountModel> result = new List<AccountModel>();
             using (var db = new RazomContext())
             {
                 AccountModel a;
-                foreach (int item in ids)
+                foreach (var item in ids)
                 {
-                    Users p = db.Users.Find(item);
+                    Users p = db.Users.Find(item.Key);
                     int photo = db.Users.Where(ph => ph.Avatar != null).SingleOrDefault(ph => ph.UserID == p.UserID) != null ? db.Users.Where(ph => ph.Avatar != null).SingleOrDefault(ph => ph.UserID == p.UserID).UserID : 0;
                     NetworkAccounts fs = db.NetworkAccounts.Where(ac => ac.NetworkID == 1).FirstOrDefault(ac => ac.UserID == p.UserID);
                     NetworkAccounts tw = db.NetworkAccounts.Where(ac => ac.NetworkID == 2).FirstOrDefault(ac => ac.UserID == p.UserID);
@@ -258,7 +263,8 @@ namespace Razom.Controllers
                         Phone = p.Phone,
                         FoursquareAccount = fs != null ? fs.ProfileURL : "",
                         TwitterAccount = tw != null ? tw.ProfileURL : "",
-                        VKAccount = vk != null ? vk.ProfileURL : ""
+                        VKAccount = vk != null ? vk.ProfileURL : "",
+                    
                     };
                     result.Add(a);
                 }
