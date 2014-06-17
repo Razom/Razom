@@ -4,90 +4,109 @@
     ViewBag.Title = "Додати місце";
 }
 
-<h2>Додати місце</h2>
+<div style="padding:2% 2% 2% 2%;">
+    <h2>Додати місце</h2>
 
-@using (Html.BeginForm("AddPlace","Trip",FormMethod.Post))
-{
-    @Html.HiddenFor(m => m.TripID)
-    @Html.TextBoxFor(m => m.Token)
-    <input type="submit" value="Шукати" />
-}
-@foreach (var item in Model.PlacesInfo.Places)
-{
-    <p>@Html.ActionLink(String.Format("{0}", item.Name), "Show", "Place", new { id=@item.ID }, null) - @Html.ActionLink("Додати", "ConfirmAddPlace", "Trip", new { id=@Model.TripID,  uid=@item.ID },null) </p>
-}
-<div>
-@for (int i = 1; i <= Model.PlacesInfo.PagesCount; i++)
-{
-    if (i == Model.PlacesInfo.CurrentPage)
+    @using (Html.BeginForm("AddPlace", "Trip", FormMethod.Post))
     {
-        <span style="background-color:black; color: #f2f2f2">@i</span>
-    }
-    else
-    {
-        using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post))
-        {    
-             <span style="background-color:black; color: #f2f2f2"><input type="submit" name="page" value="@i" /><input type="text" name="id" value="@Model.Token" style="display:none;" /><input type="text" name="t_id" value="@Model.TripID" style="display:none;"></span>
-        }
-    }
-}   
-</div>
+        <div class="form-group">
+            @Html.HiddenFor(m => m.TripID)
+            @Html.TextBoxFor(m => m.Token, new { @class = "form-control", @style = "width:20%" })
+            <div style="padding-top:2%">
+                <input class="btn btn-success" type="submit" value="Шукати" />
+            </div>
 
-
-<div class="row" style="position:relative; left:15%">
-    @if (Model.PlacesInfo.Places.Count > 1)
-    {
-        <div class="col-xs-1" style="width:500px;">
-        @if (2 < Model.PlacesInfo.CurrentPage)
-        {
-            using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
-            {
-                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" />
-                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
-                <input type="text" name="id" value="@Model.Token" style="display:none;" />
-            }
-            <span>...</span>
-        }
-
-            @if (Model.PlacesInfo.CurrentPage > 1)
-            {
-                using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
-                {
-                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.PlacesInfo.CurrentPage-1)" />
-                    <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
-                    <input type="text" name="id" value="@Model.Token" style="display:none;" />
-                }       
-            }
-
-            
-            @using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
-            {
-                <input type="submit" name="page" class="btn btn-info" style="position:relative;bottom:10%" value="@Model.PlacesInfo.CurrentPage" />
-                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
-                <input type="text" name="id" value="@Model.Token" style="display:none;" />
-            }
-                       
-            @if (Model.PlacesInfo.CurrentPage < Model.PlacesInfo.PagesCount)
-            {
-                using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
-                {
-                    <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.PlacesInfo.CurrentPage+1)" />
-                    <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
-                    <input type="text" name="id" value="@Model.Token" style="display:none;" />
-                }       
-            }
-
-        @if (Model.PlacesInfo.CurrentPage < Model.PlacesInfo.PagesCount-1)
-        {
-            <span>...</span>
-            using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
-            {
-                <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PlacesInfo.PagesCount" />
-                <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
-                <input type="text" name="id" value="@Model.Token" style="display:none;" />
-            }
-            
-        }
         </div>
-    }   
+
+    }
+
+    <div style="padding-top:2%">
+        @for (int i = 0; i < Model.PlacesInfo.Places.Count; )
+        {
+            <div class="row">
+                @for (int j = 0; j < 3 && i <= Model.PlacesInfo.Places.Count; j++)
+                {
+
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            @if (Model.PlacesInfo.Places[i].PhotoUrl != "" && Model.PlacesInfo.Places[i].PhotoUrl != null)
+                            {
+                                <img src="@Url.Content(Model.PlacesInfo.Places[i].PhotoUrl)" style="height:auto; width:100%;" alt="Images/no-photo-available.jpg" />
+                            }
+
+                            <div class="caption">
+                                <h3>@Model.PlacesInfo.Places[i].Name</h3>
+                                <p>
+                                    @Html.ActionLink("Перейти на сторінку", "Show", "Place", new { id = @Model.PlacesInfo.Places[i].ID }, new { @class="btn btn-primary"}) 
+                                    @Html.ActionLink("Додати", "ConfirmAddPlace", "Trip", new { id = @Model.TripID, uid = @Model.PlacesInfo.Places[i].ID }, new { @class = "btn btn-success" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                            { i++; }
+                }
+            </div>
+        }
+    </div>
+
+
+
+    <div class="row" style="position:relative; left:15%">
+        @if (Model.PlacesInfo.Places.Count > 1)
+        {
+            <div class="col-xs-1" style="width:500px;">
+                @if (2 < Model.PlacesInfo.CurrentPage)
+                {
+                    using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                    {
+                        <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="1" />
+                        <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                        <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                    }
+                    <span>...</span>
+                }
+
+                @if (Model.PlacesInfo.CurrentPage > 1)
+                {
+                    using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                    {
+                        <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.PlacesInfo.CurrentPage-1)" />
+                        <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                        <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                    }
+                }
+
+
+                @using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                {
+                    <input type="submit" name="page" class="btn btn-info" style="position:relative;bottom:10%" value="@Model.PlacesInfo.CurrentPage" />
+                    <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                    <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                }
+
+                @if (Model.PlacesInfo.CurrentPage < Model.PlacesInfo.PagesCount)
+                {
+                    using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                    {
+                        <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@(Model.PlacesInfo.CurrentPage+1)" />
+                        <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                        <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                    }
+                }
+
+                @if (Model.PlacesInfo.CurrentPage < Model.PlacesInfo.PagesCount - 1)
+                {
+                    <span>...</span>
+                    using (Html.BeginForm("PagerAddPlace", "Trip", FormMethod.Post, new { @style = "display:inline-block;" }))
+                    {
+                        <input type="submit" name="page" class="btn btn-default" style="position:relative;bottom:10%" value="@Model.PlacesInfo.PagesCount" />
+                        <input type="text" name="t_id" value="@Model.TripID" style="display:none;" />
+                        <input type="text" name="id" value="@Model.Token" style="display:none;" />
+                    }
+
+                }
+            </div>
+        }
+    </div>
+
 </div>
