@@ -3,48 +3,79 @@
     ViewBag.Title = "Мої місця";
 }
 
-<div class="wrapperManage">
-    <div class="containerManage">
-        <ul class="menuManage" rel="sam1">
-            <li>@Html.ActionLink("Створити місце", "Create", "Place")</li>
-        </ul>
+
+
+
+
+<div style="padding-top:2%; padding-left:2%">
+    <div style="padding-top:2%;">
+        @Html.ActionLink("Створити місце", "Create", "Place", new { @class = "btn btn-primary" })
+    </div>
+    @if (Model.Places.Count() == 0)
+    {
+        <h3 style="padding-top:2%">У вас немає місць, які ви відмітили як ті, що хочете відвідати</h3>
+    }
+
+    <div style="padding-top:2%">
+        @for (int i = 0; i < Model.Places.Count; )
+        {
+            <div class="row">
+                @for (int j = 0; j < 3 && i + j - 1 <= Model.Places.Count; j++)
+                {
+
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            @if (Model.Places[i].PhotoUrl != "")
+                            {
+                                
+                                <img src="@Url.Content(Model.Places[i].PhotoUrl)" style="height:auto; width:100%;" alt="Images/no-photo-available.jpg" />
+                            }
+
+                            <div class="caption">
+                                <h3>@Model.Places[i].Name</h3>
+                                <p>
+                                    @Html.ActionLink("Перейти на сторінку", "Show", "Place", new { id = Model.Places[i].PlaceID }, new { @class = "btn btn-primary" })
+                                
+                                    @Html.ActionLink("Видалити", "DeleteFromList", "Place", new { id = Model.Places[i].ID }, new { @class = "btn btn-default" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                                        { i++; }
+                }
+            </div>
+        }
     </div>
 </div>
 
-<div>
-    @if (Model.Places.Count() == 0)
+
+
+
+<ul class="pagination" style="left:50%; position:relative;">
+    @if (Model.PagesCount > 1)
     {
-        <h3>У вас немає місць, які ви відмітили як ті, що хочете відвідати</h3>
-    }
-    @foreach (var item in Model.Places)
-    {
-        <div>
-            <div><img class="listlogo" src="@Url.Content(item.PhotoUrl)" alt="IMAGES" /></div>
-            <div>
-                <p>@Html.ActionLink(item.Name, "Show", "Place", new { id=item.PlaceID },null)</p>
-                <p>
-                    @foreach (var a in item.tags)
-                    {
-                        <span>@a </span>
-                    }
-                </p>
-            </div>
-            <div>
-                @Html.ActionLink("Видалити", "DeleteFromList", "Place", new { id = item.ID }, new { @class = "btn btn-default"})
-            </div>
-        </div>
-    }
-</div>
-<div id="pager">
-    @for (int i = 1; i <= Model.PagesCount; i++)
-    {
-        if (i == Model.CurrentPage)
+        if (2 < Model.CurrentPage)
         {
-            <span style="background-color:black; color: #f2f2f2"><a href="@String.Format("/Place/Index/" + i)"> @Model.CurrentPage </a></span>
+            <li>@Html.ActionLink("1", "Index", "Place", new { id = 1 }, null)</li>
+            <li><a href="">...</a></li>
         }
-        else
+
+        if (Model.CurrentPage > 1)
         {
-            <span style="color: black"><a href="@String.Format("/Place/Index/" + i)"> @i </a></span>
+            <li>@Html.ActionLink((Model.CurrentPage - 1).ToString(), "Index", "Place", new { id = Model.CurrentPage - 1 }, null)</li>
+        }
+
+        <li class="active">@Html.ActionLink(Model.CurrentPage.ToString(), "Index", "Place", new { id = Model.CurrentPage }, null)</li>
+
+        if (Model.CurrentPage < Model.PagesCount)
+        {
+            <li>@Html.ActionLink((Model.CurrentPage + 1).ToString(), "Index", "Place", new { id = Model.CurrentPage + 1 }, null)</li>
+        }
+
+        if (Model.CurrentPage < Model.PagesCount - 1)
+        {
+            <li><a href="">...</a></li>
+            <li>@Html.ActionLink(Model.PagesCount.ToString(), "Index", "Place", new { id = Model.PagesCount }, null)</li>
         }
     }
-</div>
+</ul>
