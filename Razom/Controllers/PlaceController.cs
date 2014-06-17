@@ -121,6 +121,8 @@ namespace Razom.Controllers
                     place.City = db.Region.Find(p.CityID).Name;
                     place.Name = p.Name;
                     place.PlaceID = p.PlaceID;
+                    place.Address = p.Address;
+                    place.Coordinates = p.Coordinates;
                     place.PlaceType = db.PlaceType.Find(p.PlaceTypeID) == null ? string.Empty : db.PlaceType.Find(p.PlaceTypeID).Type;
                     place.Rating = p.Rating ?? 0;
                     place.tags = (from pl in db.Places
@@ -151,7 +153,7 @@ namespace Razom.Controllers
                     }
 
                     place.Comment = db.Comments.Where(c => c.PlaceID == id).ToList();
-                    place.Comment = place.Comment.Reverse();
+                    place.Comment.Reverse();
                     int pageSize = 3;
                     int pCount = 0;
                     if (place.Comment.Count() % pageSize == 0)
