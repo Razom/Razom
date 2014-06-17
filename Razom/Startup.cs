@@ -1,8 +1,8 @@
 ﻿using Owin;
 using Microsoft.Owin;
 
-[assembly: OwinStartup(typeof(chat2.Startup))]
-namespace chat2
+[assembly: OwinStartup(typeof(Razom.Startup))]
+namespace Razom
 {
     public class Startup
     {

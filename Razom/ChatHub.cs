@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using DataModel;
 
-namespace chat2
+namespace Razom
 {
     public class ChatHub : Hub
     {
@@ -26,7 +26,7 @@ namespace chat2
                 db.Message.Add(m);
                 db.SaveChanges();
             }
-            Clients.All.addNewMessageToPage(name,travel_id, message);
+            Clients.All.addNewMessageToPage(name, travel_id, message);
         }
     }
 }

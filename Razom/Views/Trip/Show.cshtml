@@ -69,19 +69,12 @@
         <input type="button" id="sendMessage" class="btn btn-success"  value="Відправити" />
         
     </div>
-    @*
-    @using (Html.BeginForm())
-    {
-        @Html.TextArea("comment", new { @class="form-control",@rows="4", @style="width:30%"})
-        <input class="btn btn-success" type="button" value="Залишити коментар" />
-    }*@
+    
 </div>
 @Html.ActionLink("Вийти з подорожі", "LeftTrip", "Trip", new { id = Model.ID }, new { @class="btn btn-danger", @style="left:5%; position:relative;"})
 
-
-@section scripts
-{
     <script src="~/Scripts/jquery.signalR-2.0.3.min.js"></script>
+     
     <script src="~/signalr/hubs"></script>    
 
    <script>
@@ -95,7 +88,7 @@
                    + encodeHtml(message) + '</li>');
                }
            };
-           
+           $('#messageBox').focus();
            $.connection.hub.start().done(function () {
                $('#sendMessage').click(function () {
                    chat.server.send('@Model.UserID', '@Model.ID', $('#messageBox').val());
@@ -108,5 +101,5 @@
            var ecValue = $('<div />').text(value).html();
            return ecValue;
        }
+       
    </script>
-}
