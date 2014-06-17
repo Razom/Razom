@@ -37,13 +37,12 @@ namespace Razom.Models
         [Required]
         public string Address { get; set; }
         public IEnumerable<string> tags { get; set; }
-        public string Coordinates { get; set; }
         public int Rating { get; set; }
         public string City { get; set; }
         public string PlaceType { get; set; }
-        public List<Comments> Comment { get; set; }
-        public List<string> PhotoUrls { get; set; }
-        public List<int> PhotoBytes { get; set; }
+        public IEnumerable<Comments> Comment { get; set; }
+        public IEnumerable<string> PhotoUrls { get; set; }
+        public IEnumerable<int> PhotoBytes { get; set; }
         public bool IsEditable { get; set; }
         public bool IsAuthorized { get; set; }
         public bool IsInFavorite { get; set; }
