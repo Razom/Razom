@@ -84,26 +84,26 @@
         {      
             if (2 < Model.CurrentPage)
             {
-                <li>@Html.ActionLink("1", "Index", "Place", new { id=1 },null)</li>
-                <li><a href="">...</a></li>
+                <li>@Html.ActionLink("1", Model.ActionUrl, "Place", new { id=1 },null)</li>
+                <li><a href="#">...</a></li>
             }
 
             if (Model.CurrentPage > 1)
             {
-               <li>@Html.ActionLink((Model.CurrentPage-1).ToString(), "Index", "Trip", new { id=Model.CurrentPage-1},null)</li>
+               <li>@Html.ActionLink((Model.CurrentPage-1).ToString(), Model.ActionUrl, "Trip", new { id=Model.CurrentPage-1},null)</li>
             }
         
-            <li class="active">@Html.ActionLink(Model.CurrentPage.ToString(), "Index", "Trip", new { id = Model.CurrentPage}, null)</li>
+            <li class="active">@Html.ActionLink(Model.CurrentPage.ToString(), Model.ActionUrl, "Trip", new { id = Model.CurrentPage}, null)</li>
                 
             if (Model.CurrentPage < Model.PagesCount)
             {
-                <li>@Html.ActionLink((Model.CurrentPage+1).ToString(), "Index", "Trip", new { id=Model.CurrentPage+1},null)</li>
+                <li>@Html.ActionLink((Model.CurrentPage+1).ToString(), Model.ActionUrl, "Trip", new { id=Model.CurrentPage+1},null)</li>
             }
 
             if (Model.CurrentPage < Model.PagesCount-1)
             {
-                <li><a href="">...</a></li>
-                <li>@Html.ActionLink(Model.PagesCount.ToString(), "Index", "Trip", new { id=Model.PagesCount},null)</li>
+                <li><a href="#">...</a></li>
+                <li>@Html.ActionLink(Model.PagesCount.ToString(), Model.ActionUrl, "Trip", new { id=Model.PagesCount},null)</li>
             }
         }
 </ul>

@@ -30,7 +30,14 @@
                                         @Html.LabelFor(m => Model.Accounts[i].Login, "Логін ")
                                         @Html.DisplayFor(m => Model.Accounts[i].Login)
                                     </p>
-
+                                    <p>
+                                        @Html.LabelFor(m => m.Accounts[i].Associations,"Співпадіння: ")
+                                        <span>@Model.Accounts[i].Associations.First() </span>
+                                        @foreach (var item in Model.Accounts[i].Associations.Skip(1))
+                                        {
+                                            <span>, @item </span>
+                                        }
+                                    </p>
                                 </div>
                             </div>
                         </div>
