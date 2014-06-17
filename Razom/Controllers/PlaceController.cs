@@ -65,7 +65,7 @@ namespace Razom.Controllers
                 });
             }
 
-            int pageSize = 5;
+            int pageSize = 6;
             int pCount = 0;
             if(result.Count % pageSize == 0)
             {

@@ -7,6 +7,10 @@
 *.sln.docstates
 **Razom.dll
 **Razom.pdb
+<<<<<<< HEAD
+**.suo
+=======
+>>>>>>> origin/master
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
