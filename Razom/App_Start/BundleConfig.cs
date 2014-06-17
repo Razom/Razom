@@ -8,6 +8,7 @@ namespace Razom
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //BundleTable.EnableOptimizations = false;
             bundles.Add(new ScriptBundle("~/js").Include(
                 "~/Scripts/jquery-1.*",
                 "~/Scripts/bootstrap.js",
