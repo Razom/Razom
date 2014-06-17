@@ -98,6 +98,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Modules\PlaceSearchEngine.dll</HintPath>
     </Reference>
+    <Reference Include="RecommenderLib">
+      <HintPath>..\..\RecommenderLib\RecommenderLib\bin\Debug\RecommenderLib.dll</HintPath>
+    </Reference>
     <Reference Include="SharpSquare, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Modules\SharpSquare.dll</HintPath>
@@ -567,6 +570,7 @@
     <Content Include="Views\Place\ShowComments.cshtml" />
     <Content Include="Views\Account\ActicateAccount.cshtml" />
     <Content Include="Views\Admin\TestConnection.cshtml" />
+    <Content Include="Views\Trip\Recommend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

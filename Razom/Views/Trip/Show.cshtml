@@ -30,7 +30,8 @@
                         </div>
                     }
                     <div class="row">
-                        <p>@Html.ActionLink("Запросити користувача", "AddUser", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })</p>
+                        <p>@Html.ActionLink("Запросити користувача", "AddUser", "Trip", new { id = Model.ID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Отримати пораду", "Recommend", "Trip", new { id = Model.ID, uid=Model.UserID }, new { @class = "btn btn-info" })</p>
                     </div>
                 </div>
             </div>

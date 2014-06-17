@@ -380,3 +380,5 @@ C:\Users\dollhead\Documents\GitHub\Razom\Razom\bin\zh-Hant\System.Spatial.resour
 C:\Users\dollhead\Documents\GitHub\Razom\Razom\obj\Debug\Razom.csprojResolveAssemblyReference.cache
 C:\Users\dollhead\Documents\GitHub\Razom\Razom\obj\Debug\Razom.dll
 C:\Users\dollhead\Documents\GitHub\Razom\Razom\obj\Debug\Razom.pdb
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\RecommenderLib.dll
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\RecommenderLib.pdb

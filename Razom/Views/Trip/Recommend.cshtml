@@ -1,0 +1,29 @@
+﻿@model Razom.Models.PeopleAddForm
+
+@{
+    ViewBag.Title = "Порада";
+}
+
+
+<h2 style ="position:relative;left:3%">Ви маєте щось спільне з цими людьми</h2>
+
+@foreach (var item in Model.AccountsInfo.Accounts)
+{
+    <p style="margin-top:2%; position:relative; left:3%;">
+        @Html.ActionLink(String.Format("{0} {1}", item.FirstName, item.SecondName), "Account", "Account", new { id=@item.ID }, null) - 
+        @Html.ActionLink("Додати", "ConfirmAddUser", "Trip", new { id = @Model.TripID, uid = @item.ID }, new {@class="btn btn-success" })
+    </p>
+    <p style="margin-top:2%; position:relative; left:3%;">
+        <p>
+            @if (item.Associations.Count() > 0)
+            {
+                <label>Спільне: </label>
+                <span>@item.Associations.First() </span>
+                foreach (var a in item.Associations.Skip(1))
+                {
+                    <span>, @a </span>
+                }   
+            }
+        </p>
+    </p>
+}

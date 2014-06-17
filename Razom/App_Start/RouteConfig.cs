@@ -12,7 +12,7 @@ namespace Razom
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+            /*
             routes.MapRoute(
                 null,
                 "Trip/ConfirmAddPlace/{id}/{uid}",
@@ -22,6 +22,16 @@ namespace Razom
                 null,
                 "Trip/ConfirmAddUser/{id}/{uid}",
                 new { Controller = "Trip", action = "ConfirmAddUser", id = UrlParameter.Optional, uid = UrlParameter.Optional }
+                );
+            routes.MapRoute(
+                null,
+                "Trip/ConfirmAddUser/{id}/{uid}",
+                new { Controller = "Trip", action = "ConfirmAddUser", id = UrlParameter.Optional, uid = UrlParameter.Optional }
+                );*/
+            routes.MapRoute(
+                null,
+                "Trip/{action}/{id}/{uid}",
+                new { Controller = "Trip", action = "{action}", id = UrlParameter.Optional, uid = UrlParameter.Optional }
                 );
             routes.MapRoute(
                 null,

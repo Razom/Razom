@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Razom.Models;
 using DataModel;
 using System.Web.Security;
+using RecommenderLib;
 
 namespace Razom.Controllers
 {
@@ -688,6 +689,38 @@ namespace Razom.Controllers
             }
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Recommend(int id, int uid)
+        {
+            List<KeyValuePair<int, List<string>>> output = Recommender.Get(uid);
+            foreach (var item in output)
+            {
+                while (item.Value.Contains(string.Empty))
+                {
+                    item.Value.Remove(string.Empty);
+                }
+            }
+            List<AccountModel> people = new List<AccountModel>();
+            
+            using (var db = new RazomContext())
+            {
+                output.ForEach(o => { 
+                    Users u = db.Users.Find(o.Key);
+                    people.Add(new AccountModel
+                    {
+                        Associations = o.Value,
+                        EMail = u.Email,
+                        FirstName = u.FirstName,
+                        SecondName = u.SecondName,
+                        ID = u.UserID,
+                        Login = u.Login
+                    });
+                });
+            }
+            AccountCollection ac = new AccountCollection { Accounts = people };
+            return View(new PeopleAddForm { TripID = id, AccountsInfo = ac });
         }
     }
 }
