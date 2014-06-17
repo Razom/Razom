@@ -5,8 +5,9 @@
 *.suo
 *.user
 *.sln.docstates
-*Razom.dll
-*Razom.pdb
+**Razom.dll
+**Razom.pdb
+**.suo
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
