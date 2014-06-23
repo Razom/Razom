@@ -382,3 +382,6 @@ C:\Users\dollhead\Documents\GitHub\Razom\Razom\obj\Debug\Razom.dll
 C:\Users\dollhead\Documents\GitHub\Razom\Razom\obj\Debug\Razom.pdb
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\RecommenderLib.dll
 E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\RecommenderLib.pdb
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\HtmlAgilityPack.dll
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\HtmlAgilityPack.pdb
+E:\Projects\Семестр 6\ТСПП\РР\Razom\Razom\bin\HtmlAgilityPack.xml

@@ -93,8 +93,8 @@
            chat.client.addNewMessageToPage = function (name, travel_id, message) {
                if(travel_id == '@Model.ID')
                {
-                   $('#messageList').append('<li><strong>'
-                   + encodeHtml(name) + '</strong>:'
+                   $('#messageList').append('<li class="list-group-item"><span class=" label label-primary" style="font-weight:bold;">'
+                   + encodeHtml(name) + '</span>:'
                    + encodeHtml(message) + '</li>');
                }
            };

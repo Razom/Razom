@@ -138,6 +138,7 @@ namespace Razom.Controllers
                     place.PlaceID = p.PlaceID;
                     place.PlaceType = db.PlaceType.Find(p.PlaceTypeID) == null ? string.Empty : db.PlaceType.Find(p.PlaceTypeID).Type;
                     place.Rating = p.Rating ?? 0;
+                    place.Address = p.Address;
                     place.tags = (from pl in db.Places
                                   join ttp in db.TagToPlace on pl.PlaceID equals ttp.PlaceID
                                   join t in db.Tag on ttp.TagID equals t.TagID
@@ -276,8 +277,8 @@ namespace Razom.Controllers
             p.Place = new FullPlace();
             using(var db = new RazomContext())
 	        {
-		        p.PlaceTypes = new SelectList(db.PlaceType.ToList(),"PlaceTypeID","Type");
-                p.Cities = new SelectList(db.Region.ToList(), "CityID", "Name");
+		        p.PlaceTypes = new SelectList(db.PlaceType.OrderBy(m => m.Type).ToList(),"PlaceTypeID","Type");
+                p.Cities = new SelectList(db.Region.OrderBy(m => m.Name).Where(m => m.Name != "Невідомо").ToList(), "CityID", "Name");
 	        }
             return View(p);
         }

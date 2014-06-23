@@ -144,13 +144,20 @@ namespace Razom.Controllers
                     
                     NetworkAccounts a1 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "foursquare").NetworkID, ProfileURL = model.FourSquareAccount != null? model.FourSquareAccount.Substring(model.FourSquareAccount.LastIndexOf('/')+1):"" };
                     NetworkAccounts a2 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "twitter").NetworkID, ProfileURL = model.TwitterAccount != null? model.TwitterAccount.Replace("@",""):"" };
-                    NetworkAccounts a3 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "vk").NetworkID, ProfileURL = model.VkAccount != null? model.VkAccount.Substring(model.VkAccount.LastIndexOf('/')+1): "" };
+                    NetworkAccounts a3 = new NetworkAccounts { UserID = model.ID, NetworkID = db.Network.SingleOrDefault(i => i.Name == "vk").NetworkID, ProfileURL = model.VkAccount != null? model.VkAccount.Substring(model.VkAccount.LastIndexOf('/')+1).Replace("id",""): "" };
                     Users user = db.Users.Find(model.ID);
-                    string[] abouts = model.About.Split(' ', ',', '.', '?', ';', ':', '<', '>', '\\', '/', '[', ']', '{', '}', '!', '@', '#', '$', '%', '^', '&', '№');
-                    foreach (string item in abouts)
+                    if (!string.IsNullOrEmpty(model.About))
                     {
-                        db.UsersData.Add(new UsersData { DataTypeID = db.DataType.Where(m => m.Type == "AboutMe").First().DataTypeID, Data = item, UserID = model.ID, });
+                        string[] abouts = model.About.Split(' ', ',', '.', '?', ';', ':', '<', '>', '\\', '/', '[', ']', '{', '}', '!', '@', '#', '$', '%', '^', '&', '№');
+                        foreach (string item in abouts)
+                        {
+                            if (!string.IsNullOrEmpty(item))
+                            {
+                                db.UsersData.Add(new UsersData { DataTypeID = db.DataType.Where(m => m.Type == "AboutMe").First().DataTypeID, Data = item, UserID = model.ID, });
+                            }
+                        }    
                     }
+                    
                     user.Phone = model.Phone;
                     if(!string.IsNullOrEmpty(model.FourSquareAccount))
                         db.NetworkAccounts.Add(a1);

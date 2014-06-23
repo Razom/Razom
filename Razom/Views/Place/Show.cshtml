@@ -11,14 +11,24 @@
 }*@
 
 @{
-    string[] coord = Model.Coordinates.Split(' ');
+    string[] coord = Model.Coordinates != null ? Model.Coordinates.Split(' ') : null;
 }
 <script src="http://api-maps.yandex.ru/1.1/index.xml?key=APRLn1MBAAAAGzIBUwMAFrDG03rgYWmGNaKtnzbQsCzaZikAAAAAAAAAAAA6ZagwCKKHrGW1co_syfLK8Yqp0A=="
         type="text/javascript"></script>
+@{
+    int scale = 17;
+    if (coord == null)
+    {
+        coord = new string[2];
+        coord[0] = "49.1";
+        coord[1] = "31.28";
+        scale = 4;
+    }
+}
 <script type="text/javascript">
         window.onload = function () {
             var map = new YMaps.Map(document.getElementById("YMapsID"));
-            map.setCenter(new YMaps.GeoPoint(@coord[1], @coord[0]), 17);
+            map.setCenter(new YMaps.GeoPoint(@coord[1], @coord[0]), @scale );
             var placemark = new YMaps.Placemark(new YMaps.GeoPoint(@coord[1], @coord[0]));
             map.addOverlay(placemark); 
             
@@ -70,7 +80,42 @@
 
                 else
                 {
-                    <img style="margin-left:1%; margin-top:1%" src="@Url.Action("DisplayPicture", "Place", new {id =Model.PhotoBytes.First()})" alt="photo" />
+                    @*<img style="margin-left:1%; margin-top:1%" src="@Url.Action("DisplayPicture", "Place", new { id = Model.PhotoBytes.First() })" alt="photo" />*@
+                    
+                    <div class="mainPhoto" style="width:100%; height:auto">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%; height:100%; position:relative">
+                            <ol class="carousel-indicators">
+                                @for (int i = 0; i < Model.PhotoBytes.Count(); i++)
+                                {
+                                    <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+                                }
+                            </ol>
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < Model.PhotoBytes.Count(); i++)
+                                {
+                                    if (0 == i)
+                                    {
+                                        <div class="active item">
+                                            <img class="img-responsive" src=@Url.Action("DisplayPicture", "Place", new { id = Model.PhotoBytes[i] }) alt="">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="item">
+                                            <img class="img-responsive" src=@Url.Action("DisplayPicture", "Place", new { id = Model.PhotoBytes[i] }) alt="">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+                            </a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+
+                            </a>
+
+                        </div>
+                    </div>
                 }
                 <div class="caption">
                     <h3>Фото</h3>
@@ -85,6 +130,10 @@
                 <div id="YMapsID" style="width:400px;height:300px"></div>
                 <div class="caption">
                     <h3>Приблизне місцезнаходження</h3>
+                    @if (scale == 4)
+                    {
+                        <p>точних даних про місцезнаходження немає</p>
+                    }
                 </div>
             </div>          
         </div>
@@ -151,7 +200,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-5">
-                                    @Html.ActionLink("Додати місце до обраного", "AddToFavorite", "Place", new { id = Model.PlaceID }, new { @class="btn btn-success"})
+                                    @Html.ActionLink("Додати місце до обраного", "AddToFavorite", "Place", new { id = Model.PlaceID }, new { @class = "btn btn-success" })
                                 </div>
                             </div>
                         </li>

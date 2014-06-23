@@ -37,7 +37,7 @@
             @for (int i = 0; i < Model.Trips.Count; )
             {
                 <div class="row">
-                    @for (int j = 0; j < 2 && i + j <= Model.Trips.Count; j++)
+                    @for (int j = 0; j < 2 && i < Model.Trips.Count; j++)
                     {
                         
                         <div class="col-sm-6 col-md-4">

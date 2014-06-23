@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +55,9 @@
     </Reference>
     <Reference Include="FoursquareLib">
       <HintPath>Modules\FoursquareLib.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
@@ -513,6 +517,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Trip\AddPlace.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Trip\AddUser.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Trip\ChangeDate.cshtml" />
+    <Content Include="Views\Trip\ChangeName.cshtml" />
+    <Content Include="Views\Trip\ConfirmAddPlace.cshtml" />
+    <Content Include="Views\Trip\ConfirmAddUser.cshtml" />
+    <Content Include="Views\Trip\Create.cshtml" />
+    <Content Include="Views\Trip\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Trip\Invites.cshtml" />
+    <Content Include="Views\Trip\LeftTrip.cshtml" />
+    <Content Include="Views\Trip\MyTripsButton.cshtml" />
+    <Content Include="Views\Trip\Recommend.cshtml" />
+    <Content Include="Views\Trip\Show.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -534,7 +557,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Place\MyPlacesButton.cshtml" />
-    <Content Include="Views\Trip\MyTripsButton.cshtml" />
     <Content Include="Views\Account\EnterButton.cshtml" />
     <Content Include="Views\Account\AccountButton.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -550,18 +572,7 @@
     <Content Include="Views\Place\Show.cshtml" />
     <Content Include="Views\Place\PlaceSearch.cshtml" />
     <Content Include="Views\Account\PeopleSearch.cshtml" />
-    <Content Include="Views\Trip\Index.cshtml" />
-    <Content Include="Views\Trip\Show.cshtml" />
-    <Content Include="Views\Trip\ChangeName.cshtml" />
-    <Content Include="Views\Trip\ChangeDate.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Trip\AddUser.cshtml" />
-    <Content Include="Views\Trip\ConfirmAddUser.cshtml" />
-    <Content Include="Views\Trip\AddPlace.cshtml" />
-    <Content Include="Views\Trip\ConfirmAddPlace.cshtml" />
-    <Content Include="Views\Trip\LeftTrip.cshtml" />
-    <Content Include="Views\Trip\Invites.cshtml" />
-    <Content Include="Views\Trip\Create.cshtml" />
     <Content Include="Service References\ServiceReference1\Service1.wsdl" />
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Place\Create.cshtml" />
@@ -570,7 +581,6 @@
     <Content Include="Views\Place\ShowComments.cshtml" />
     <Content Include="Views\Account\ActicateAccount.cshtml" />
     <Content Include="Views\Admin\TestConnection.cshtml" />
-    <Content Include="Views\Trip\Recommend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
